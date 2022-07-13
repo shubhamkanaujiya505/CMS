@@ -133,25 +133,25 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
 
         <!-- Navigation bar  -->
 <!-- <div> -->
-<!-- <nav id="navigation" class="navbar navbar-expand-sm navbar-green bg-green"> -->
-  <!-- <div class="container-fluid">
+<nav id="navigation" class="navbar navbar-expand-sm navbar-green bg-green">
+  <div class="container-fluid">
     <a class="navbar-brand" style="font-size: 30px; font-family: 'Edu TAS Beginner', cursive; color: lightskyblue"><b>Avalon Aurora High School</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
-    </button> -->
-    <!-- <div class="collapse navbar-collapse" id="mynavbar"> -->
-      <!-- <ul class="navbar-nav me-auto"> -->
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
         
         
-      <!-- </ul>
-      <div style="display:inline-flex; text-align:right;">
-        <button class="btn btn-dark" type="button" style="width: 50%; margin-top:0px"> User Login</button>
-        <button class="btn btn-dark"> <a href="Display.php" type="button"  style=" width: -21%; text-decoration:none; padding:2px; color:white;" >View Records</a></button>
-      </div> -->
-    <!-- </div> -->
-  <!-- </div> -->
-<!-- </nav>
-</div> -->
+     </ul>
+      <!-- <div style="display:inline-flex; text-align:right;"> -->
+        <button class="btn btn-blue " style="border-radius:8px;font-size:large;  margin-right:4px;" type="button" > <a href="login.php" style="color: white; "><b>User Login</b></a></button>
+        <button class="btn btn-blue " style="border-radius:8px;font-size:large; "> <a href="Display.php" type="button" style="color: white;"><b>View Records</b></a></button>
+      <!-- </div>  -->
+    </div> 
+  </div>
+ </nav>
+<!-- </div>  -->
 
 <!-- Navigation bar end  -->
 
@@ -168,6 +168,17 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- add iziToast css -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/izitoast/dist/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- end iziToast css -->
+     <!-- add iziToast js -->
+    <!-- <script src="https://unpkg.com/izitoast/dist/js/iziToast.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <!-- end iziToast js -->
  <!-- for date  -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -191,7 +202,7 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
       
          <div class="title">
               <h1 class="text-white bg-blue text-center">
-                Student Registration Form
+                <b>Student Registration Form</b>
                 <hr />
               </h1>
             </div>
@@ -205,7 +216,7 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
               <i class="fas fa-user"></i>
               <input type="text" class="inputs" name="name" id="Name" value="<?php echo $name; ?>" placeholder="Enter your Name"  />
               <!-- Using style tag in span tag to give style in error message -->
-              <span id="nameMessage" style="color: red"></span>
+              <span id="nameMessage" style="color: white"></span>
             </div>
             
             <div>
@@ -221,7 +232,7 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
             
             <div id="phone" >
               <!-- Select Country code -->
-              <label for="Select Country Code">Mobile
+              <label id="dropdown" for="Select Country Code">Mobile
                 <hr />
               </label>
               <i class="fas fa-user"></i>
@@ -444,7 +455,7 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
               <span id="countryCodeMessage" style="color: red"></span>
             </div>
             <div>
-              <i class="fas fa-user"></i>
+              <!-- <i class="fas fa-user"></i> -->
               
               <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value=""
                 placeholder="Enter your Mobile Number"  />
@@ -587,12 +598,12 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
             <input type="hidden" name="token" value="<?php echo $Token;?>">
             <!-- Submit button -->
             <div>
-            <button type="submit" name="submit" value="submit" style="margin-top:50px; width: 50%; border-radius:35px; font-size:large;"><b>Submit</b></a></button>
+            <button type="submit" name="submit"  value="submit" style="margin-top:50px; width: 50%; border-radius:35px; font-size:large;"><b>Submit</b></a></button>
             <!-- Reset button -->
             <button type="reset" value="Reset" style="width: 49%; border-radius:35px; font-size:large;"><b>Reset</b></button>
             </div>
 
-          
+            <!-- id="successClick"  -->
           </form>
 
     </table>
@@ -602,5 +613,6 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
 </div>
       <!-- JavaScript page link -->
   <script src="Registration_form_script.js"></script>
+ 
 </body>
 </html>

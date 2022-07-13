@@ -23,8 +23,8 @@
 <title>login page</title>
 
 </head>
-<!-- style="background-image: url('kids.jpg'); background-size:cover" -->
-<body >
+
+<body style="background-image: url('kids.jpg'); background-size:cover">
 
     <!-- Create a box  -->  
 <div class="center">
@@ -159,9 +159,10 @@
         $data = mysqli_query($conn, $query); 
         $res = mysqli_fetch_object($data);
         $pass = $res->Password;
-        echo $pass;
+
         $decrypted_data = openssl_decrypt($pass, $cipher, $encryption_key, 0, $iv);
-        echo 'dfsfsd'.$decrypted_data;
+        // var_dump($password == $decrypted_data);
+        // die;
         if($password == $decrypted_data)
         {
           $_SESSION['user_name'] = $username;
