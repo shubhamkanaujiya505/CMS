@@ -15,48 +15,58 @@ if($userprofile == true){
 }
 
 $Update = $_GET['Updates'];
-$query = "SELECT * FROM StudentForm where id = '$Update'"; 
+$query = "SELECT * FROM StudentForm where SrNo = '$Update'"; 
 $data = mysqli_query($con, $query); 
 $res = mysqli_fetch_object($data);
-print_r($res);
+// print_r($res);
+$name = $res->Student_Name;
+$fathername = $res->Father_Name;
+$mobilenumber = $res->Mobile_Number;
+$gender = $res->Gender;
 
+$dob = $res->Date_Of_Birth;
+$state = $res->State;
+$address = $res->Address;
+$email = $res->Email;
+$File = $res->FileUpload;
+// echo "<pre>";print_r($res);exit;
 // when clicked on submit button data is save
-if(isset($_POST['submit'])){
+// if(isset($_POST['submit'])){
 
-    // Taking all values from the form data(input)
+//     // Taking all values from the form data(input)
 
-//   $name =  $_POST['name'];
-//   $fathername = $_POST['fathername'];
-//   $mobilenumber =  $_POST['mobilenumber'];
-//   $gender =  $_POST['gender'];
-//   $dob =  $_POST['dob'];
-//   $state =  $_POST['state'];
-//   $Address = $_POST['Address'];
-//   $email = $_POST['email'];
-//   $Password = $_POST['password'];
-//   $File = $_POST['file'];
+// //   $name =  $_POST['name'];
+// //   $fathername = $_POST['fathername'];
+// //   $mobilenumber =  $_POST['mobilenumber'];
+// //   $gender =  $_POST['gender'];
+// //   $dob =  $_POST['dob'];
+// //   $state =  $_POST['state'];
+// //   $Address = $_POST['Address'];
+// //   $email = $_POST['email'];
+// //   $Password = $_POST['password'];
+// //   $File = $_POST['file'];
  
-  $value['name'] =  $_REQUEST['name'];
-  $value['fathername'] = $_REQUEST['fathername'];
-  $value['mobilenumber'] =  $_REQUEST['mobilenumber'];
-  $value['gender'] =  $_REQUEST['gender'];
-  $value['dob'] =  $_REQUEST['dob'];
-  $value['state'] =  $_REQUEST['state'];
-  $value['Address'] = $_REQUEST['Address'];
-  $value['email'] = $_REQUEST['email'];
-  $value['File'] = $_REQUEST['file'];
+//   $value['name'] =  $_REQUEST['name'];
+//   $value['fathername'] = $_REQUEST['fathername'];
+//   $value['mobilenumber'] =  $_REQUEST['mobilenumber'];
+//   $value['gender'] =  $_REQUEST['gender'];
+//   $value['dob'] =  $_REQUEST['dob'];
+//   $value['state'] =  $_REQUEST['state'];
+//   $value['Address'] = $_REQUEST['Address'];
+//   $value['email'] = $_REQUEST['email'];
+//   $value['File'] = $_REQUEST['file'];
 
-  $v = '"' . implode('", "', $value) . '"';
+//   $v = '"' . implode('", "', $value) . '"';
   
-    // taking input in db table
-    $q = "update StudentForm set SrNo = $Update,$v where SrNo=$v";
+//     // taking input in db table
+//     $q = "update StudentForm set SrNo = $Update,$v where SrNo=$v";
  
-//$name,$fathername,$mobilenumber,$gender,$dob,$state,$Address,$email,$Password,$File
-    $query = mysqli_query($con,$q);
+// //$name,$fathername,$mobilenumber,$gender,$dob,$state,$Address,$email,$Password,$File
+//     $query = mysqli_query($con,$q);
 
-    header('location: Display.php');
+//     header('location: Display.php');
 
-}
+// }
 
 ?>
 
@@ -77,7 +87,7 @@ if(isset($_POST['submit'])){
   <title>Resistration form</title>
 </head>
 
-<body>
+<body style="background-color: skyblue;">
   <!-- Registration box -->
   <div class="container">
     <!-- Calling function form js using validation function-->
@@ -108,7 +118,7 @@ if(isset($_POST['submit'])){
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <input type="text" class="inputs" name="fathername" id="F_Name" value="<?php  echo $res['Father_Name']; ?>" placeholder="Enter your Father Name" />
+              <input type="text" class="inputs" name="fathername" id="F_Name" value="<?php  echo $fathername ?>" placeholder="Enter your Father Name" />
               <span id="fatherNameMessage" style="color: red"></span>
             </div>
 
@@ -118,7 +128,7 @@ if(isset($_POST['submit'])){
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value="<?php  echo $res['Mobile_Number']; ?>"
+              <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value="<?php  echo $mobilenumber; ?>"
                 placeholder="Enter your Mobile Number" />
               <span id="mobileNumberMessage" style="color: red"></span>
             </div>
@@ -133,7 +143,7 @@ if(isset($_POST['submit'])){
               <span id="maleMessage" style="color: red"></span><br>
 
               <i class="fas fa-user"></i>
-              <input type="radio" class="gender" name="gender" id="Female" value="0" />
+              <input type="radio" class="gender" name="gender" id="Male" value="0" />
               <span id="female" for="Female"><b>Female</b> </span>
               <span id="femaleMessage" style="color: red"></span>
             </div>
@@ -144,17 +154,18 @@ if(isset($_POST['submit'])){
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <input type="Date" class="inputs" name="dob" id="dob" value="<?php  echo $res['Date_Of_Birth']; ?>" />
+              <input type="Date" class="inputs" name="dob" id="dob" value="<?php  echo $dob; ?>" />
               <span id="DOBMessage" style="color: red"></span>
             </div>
 
             <div>
               <!-- Select State -->
+              
               <label for="Select_State">Select State
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <select name="state" id="State" class="inputs" value="<?php  echo $res['State']; ?>">
+              <select name="state" id="State" class="inputs" value="<?php  echo $state; ?>">
                 <option value="">Choose an option</option>
                 <option value="Goa"><b>Goa</b></option>
                 <option value="Gujrat"><b>Gujrat</b></option>
@@ -170,7 +181,7 @@ if(isset($_POST['submit'])){
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <textarea name="Address" id="Address" class="inputs" placeholder="Enter your Address" rows="4" value="<?php  echo $res['Address']; ?>"></textarea>
+              <textarea name="Address" id="Address" class="inputs" placeholder="Enter your Address" rows="4" value="<?php  echo $address; ?>"></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
 
@@ -181,7 +192,7 @@ if(isset($_POST['submit'])){
               </label>
               <i class="far fa-envelope"></i>
 
-              <input type="text" class="inputs" name="email" id="E_mail" value="<?php  echo $res['Email']; ?>" placeholder="abc@gmail.com" />
+              <input type="text" class="inputs" name="email" id="E_mail" value="<?php  echo $email; ?>" placeholder="abc@gmail.com" />
               <span id="EmailMessage" style="color: red"></span>
             </div>
             <div>
@@ -191,7 +202,7 @@ if(isset($_POST['submit'])){
               </label>
               <i class="fas fa-lock"></i>
 
-              <input type="file" class="inputs" name="file" id="file" value="" />
+              <input type="file" class="inputs" name="file" id="file" value="" <?php echo $File; ?> />
               <span id="fileMessage" style="color: red"></span>
             </div>
             <!-- Submit button -->
