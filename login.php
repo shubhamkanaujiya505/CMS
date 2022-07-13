@@ -23,8 +23,8 @@
 <title>login page</title>
 
 </head>
-<!-- style="background-image: url('kids.jpg'); background-size:cover" -->
-<body >
+
+<body style="background-image: url('kids.jpg'); background-size:cover">
 
     <!-- Create a box  -->  
 <div class="center">

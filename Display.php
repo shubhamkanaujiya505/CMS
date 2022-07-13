@@ -6,14 +6,31 @@ session_start();
 // echo "Welcome ".$_SESSION['user_name'];
 
 ?>
- <div class="row" id="table">
-      <div class="col-md-8"></div>
-      <div class="col-md-4">
-        <!-- add new record button -->
-          <button type="submit" id="addNewRecord"  style="float:right;margin:20px" value="Add New Record" class="btn btn-small btn-success" ><a href="Insert.php" class="text-white"> + Add New Record</a></button>
 
-      </div>
- 
+
+      <!-- Navigation bar  -->
+<!-- <div> -->
+<nav id="navigation" class="navbar navbar-expand-sm navbar-green bg-green">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="font-size: 30px; font-family: 'Edu TAS Beginner', cursive; color: black"><b>Avalon Aurora High School</b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" style="display: block !important;" data-bs-target="#mynavbar">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        
+        
+     </ul>
+      <!-- <div style="display:inline-flex; text-align:right;"> -->
+      <button type="submit" id="addNewRecord"  style="float:right;margin:20px" value="Add New Record" class="btn btn-small btn-success" ><a href="Registration.php" class="text-white"> + Add New Record</a></button>
+      <button type="submit" id="addNewRecord"  style="float:right;margin:20px" value="Logout"  class="btn btn-small btn-success" ><a href="logout.php" class="text-white">Logout</a></button>
+      <!-- </div>  -->
+    </div> 
+  </div>
+ </nav>
+<!-- </div>  -->
+
+<!-- Navigation bar end  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,10 +40,23 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <!-- add iziToast css -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/izitoast/dist/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- end iziToast css -->
+    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- add iziToast js -->
+    <!-- <script src="https://unpkg.com/izitoast/dist/js/iziToast.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <!-- end iziToast js -->
 <style>
+    
 *{
     font-size: 12px;
 }
@@ -52,13 +82,16 @@ session_start();
     </style>
 
 
+
 </head>
-<body>
+<body > 
+
+
     <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
            <h1 class="text-warning text-center" >Display Table Data</h1>
-           <table class="table table-striped table-hover table-border ">
+           <table class="table table-striped table-hover table-border">
             <tr  class="bg-dark text-white text-center" >
             <th>Sr.No</th>
             <th>Student Name</th>
@@ -166,7 +199,7 @@ session_start();
             
             <td> <img src="<?php echo 'http://localhost/Res_form/RF/uploadfiles/'.$res['FileUpload']; ?>" height="20px" width="20px" ></td>
                              
-            <td><button class="btn-danger btn"> <a href="Delete.php?del=<?php echo $res['SrNo']; ?>" class="text-white">Delete</a></button> </td>
+            <td><button class="btn-danger btn" > <a href="Delete.php?del=<?php echo $res['SrNo']; ?>" onclick="return confirm('Are you sure you want to delete')" class="text-white">Delete</a></button> </td>
             <td><button class="btn-primary btn"> <a href="Update.php?Updates=<?php echo $res['SrNo']; ?>" class="text-white">Update</a></button> </td>
             
 
@@ -181,6 +214,62 @@ session_start();
            </table>
         </div>
     </div>
+    <!-- <script>
+
+                    // settings
+                iziToast.settings({
+                timeout: 300000, // default timeout
+                resetOnHover: true,
+                // icon: '', // icon class
+                transitionIn: 'flipInX',
+                transitionOut: 'flipOutX',
+                position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+                onOpen: function () {
+                    console.log('callback abriu!');
+                },
+                onClose: function () {
+                    console.log("callback fechou!");
+                }
+                });
+
+                // custom toast
+                $('#customClick').click(function () {
+
+                iziToast.show({
+                    color: 'red',
+                    icon: 'fa fa-user',
+                    title: 'Hey',
+                    message: 'Are you sure you want to Delete!',
+                    position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+                    progressBarColor: 'rgb(0, 255, 184)',
+                    buttons: [
+                    [
+                        '<button>Ok</button>',
+                        function (instance, toast) {
+                           echo ($deletes);
+                        }
+                    ],
+                    [
+                        '<button>Close</button>',
+                        function (instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp'
+                        }, toast);
+                        }
+                    ]
+                    ]
+                });
+
+                }); // ! .click()
+
+            $('#any').click(function(){
+            iziToast.error({
+                title: 'Error',
+                message: 'iziToast.error()'
+            });
+            });
+
+</script> -->
 </body>
 </html>
-<a href="logout.php"><input type="submit" name="" value="LogOut" style="background:blue; color:white; height: 35px; width: 100px; margin: top 20px; margin-left: 5px; font: size 18px; border:0; border-radius: 5px; cursor:pointer"></a>
+<!-- <a href="logout.php"><input type="submit" name="" value="LogOut" style="background:blue; color:white; height: 35px; width: 100px; margin: top 20px; margin-left: 5px; font: size 18px; border:0; border-radius: 5px; cursor:pointer"></a> -->

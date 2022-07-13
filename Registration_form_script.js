@@ -49,7 +49,7 @@ function validation() {
   
     if (Name.length < 3) {
       document.getElementById('nameMessage').innerHTML =
-        '** please fill correct Length minimum three character are allowed'
+        '** Allow minimum three character'
       success = false
     }
     if (Name.length > 30) {
@@ -236,5 +236,27 @@ function validation() {
   
     return success
   
+
   
   }
+    //   // settings
+    // iziToast.settings({
+    //   timeout: 3000, // default timeout
+    //   resetOnHover: true,
+    //   // icon: '', // icon class
+    //   transitionIn: 'flipInX',
+    //   transitionOut: 'flipOutX',
+    //   position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+    //   onOpen: function () {
+    //     console.log('callback abriu!');
+    //   },
+    //   onClose: function () {
+    //     console.log("callback fechou!");
+    //   }
+    // });
+
+    // // success
+    // $('#successClick').click(function () {
+    //   iziToast.success({timeout: 5000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
+    // }); 
+  

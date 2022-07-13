@@ -5,16 +5,20 @@ $con = mysqli_connect('localhost','root','123456'); //connect to database
 
 mysqli_select_db($con,'Form');
 
- // use session before login 
- $userprofile = $_SESSION['user_name'];
- //  check condition 
- if($userprofile == true){
+// use session before login 
+$userprofile = $_SESSION['user_name'];
+//  check condition 
+if($userprofile == true){
+  
+}else{
+  header('location:login.php');
+}
 
- }else{
-     header('location:login.php');
- }
-
-
+$Update = $_GET['Updates'];
+$query = "SELECT * FROM StudentForm where id = '$Update'"; 
+$data = mysqli_query($con, $query); 
+$res = mysqli_fetch_object($data);
+print_r($res);
 
 // when clicked on submit button data is save
 if(isset($_POST['submit'])){
@@ -31,7 +35,7 @@ if(isset($_POST['submit'])){
 //   $email = $_POST['email'];
 //   $Password = $_POST['password'];
 //   $File = $_POST['file'];
-  $Update = $_GET['Updates'];
+ 
   $value['name'] =  $_REQUEST['name'];
   $value['fathername'] = $_REQUEST['fathername'];
   $value['mobilenumber'] =  $_REQUEST['mobilenumber'];
