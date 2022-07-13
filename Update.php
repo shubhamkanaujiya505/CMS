@@ -132,22 +132,28 @@ $File = $res->FileUpload;
                 placeholder="Enter your Mobile Number" />
               <span id="mobileNumberMessage" style="color: red"></span>
             </div>
+            <?php
+            $male = $female = '';
+            if($gender == 'Male')
+                $male = 'checked'; 
+            else
+                $female = 'checked';
+            
 
+            ?>
+         
             <div>
-              <!-- Gender -->
-              <label for="gender">Gender<hr /></label>
-              <br>
-              <i class="fas fa-user"></i>
-              <input type="radio" class="gender" name="gender" id="Male" value="1" />
-              <span id="male" for="Male"><b>Male</b> </span>
+                <!-- Gender -->
+                <label for="gender">Gender<hr /></label>
+                <br>
+                <input type="radio" class="Gender" name="gender" id="Male" value="Male" style=" font-size: 5px;" <?php echo $male; ?> />
+              <label id="male" for="Male">Male </label>
               <span id="maleMessage" style="color: red"></span><br>
-
-              <i class="fas fa-user"></i>
-              <input type="radio" class="gender" name="gender" id="Male" value="0" />
-              <span id="female" for="Female"><b>Female</b> </span>
+              
+              <input type="radio" class="Gender" name="gender" onclick="" id="Female" value="Female" <?php echo $female; ?>/>
+              <label id="female" for="Female">Female </label>
               <span id="femaleMessage" style="color: red"></span>
             </div>
-
             <div>
               <!-- Date of Birth -->
               <label for="DOB">Date of Birth

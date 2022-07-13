@@ -183,7 +183,10 @@ session_start();
             <td><?php  echo $res['Father_Name']; ?></td>
             <td><?php  echo $res['Mobile_Number']; ?></td>
             <!-- take condition for display male or female -->
-            <td><?php   if($res['Gender'] == 1){
+            <td><?php  
+            //echo $res['Gender'];
+            //var_dump($res['Gender'] == 'Male');
+            if($res['Gender'] == 'Male'){
                 echo "Male";
             } else{
                 echo "Female";
