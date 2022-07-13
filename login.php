@@ -23,8 +23,8 @@
 <title>login page</title>
 
 </head>
-
-<body style="background-image: url('kids.jpg'); background-size:cover">
+<!-- style="background-image: url('kids.jpg'); background-size:cover" -->
+<body >
 
     <!-- Create a box  -->  
 <div class="center">
@@ -109,7 +109,8 @@
 <!-- add php  -->
 <?php
 // Connection database 
-error_reporting(0);
+
+    error_reporting(E_ALL);
     $servername = "localhost"; //servername
     $username = "root"; // server username
     $password = "123456"; //  server password
@@ -117,7 +118,7 @@ error_reporting(0);
     
     // store all value in conn variable
     $conn = mysqli_connect($servername,$username,$password,$dbname);
-
+    
     // check connection_status
     if($conn){
         // echo "connection ok";
@@ -128,17 +129,14 @@ error_reporting(0);
     // set post method on login button 
     if(isset($_POST['login']))
     {
-      $cipher = "aes-256-cbc";
+       $cipher = "aes-256-cbc";
+      //Generate a 256-bit encryption key
+      $encryption_key ="shubhamkanaujiya";
+      // Generate an initialization vector
+      $iv_size = openssl_cipher_iv_length($cipher);
+      $iv = "ginger2022";
 
-//Generate a 256-bit encryption key
-$encryption_key ="shubhamkanaujiya";
-
-// Generate an initialization vector
-$iv_size = openssl_cipher_iv_length($cipher);
-$iv = openssl_random_pseudo_bytes($iv_size);
-
-
-    
+      //print_r($_POST);
         // call username and password using post method 
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -146,32 +144,28 @@ $iv = openssl_random_pseudo_bytes($iv_size);
         // use session before login 
         
 //Data to encrypt
-$data =  $password;
-$password = openssl_encrypt($data, $cipher, $encryption_key, 0, $iv);
+      //$data =  $password;
+      //$password = openssl_encrypt($data, $cipher, $encryption_key, 0, $iv);
 
 
 
 //Decrypt data
-$decrypted_data = openssl_decrypt($password, $cipher, $encryption_key, 0, $iv);
+//$decrypted_data = openssl_decrypt($password, $cipher, $encryption_key, 0, $iv);
 
 // echo 'dfsfsd'.$decrypted_data;
 // die;
         // matching username and password are correct or not from db
-        $query = "SELECT * FROM StudentForm where Email = '$username' && Password = '$password' ";
-        echo $query;
-        // check data correct or not 
+        $query = "SELECT Password FROM StudentForm where Email = '$username'"; 
         $data = mysqli_query($conn, $query); 
-
-        // filter how many number rows are available in database 
-        $total = mysqli_num_rows($data);
-        // echo $total;
-
-        // make different conditions using $total variable 
-        if($total == 1){
-           // echo "Login ok";
-           $_SESSION['user_name'] = $username;
-           header('location:Display.php'); // or using meta tag to redirect other page
-
+        $res = mysqli_fetch_object($data);
+        $pass = $res->Password;
+        echo $pass;
+        $decrypted_data = openssl_decrypt($pass, $cipher, $encryption_key, 0, $iv);
+        echo 'dfsfsd'.$decrypted_data;
+        if($password == $decrypted_data)
+        {
+          $_SESSION['user_name'] = $username;
+          header('location:Display.php');
         }else{
         echo ("Login Failed");
         
