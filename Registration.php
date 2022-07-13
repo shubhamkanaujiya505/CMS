@@ -81,7 +81,8 @@ $encryption_key = "shubhamkanaujiya";
 
 // Generate an initialization vector
 $iv_size = openssl_cipher_iv_length($cipher);
-$iv = openssl_random_pseudo_bytes($iv_size);
+//$iv = openssl_random_pseudo_bytes($iv_size);
+$iv = "ginger2022";
 
 //Data to encrypt
 $data = $value['Password'];
