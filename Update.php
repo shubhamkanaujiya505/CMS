@@ -132,14 +132,14 @@ $File = $res->FileUpload;
                 placeholder="Enter your Mobile Number" />
               <span id="mobileNumberMessage" style="color: red"></span>
             </div>
+
+            
             <?php
             $male = $female = '';
             if($gender == 'Male')
                 $male = 'checked'; 
             else
                 $female = 'checked';
-            
-
             ?>
          
             <div>

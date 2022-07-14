@@ -259,4 +259,60 @@ function validation() {
     // $('#successClick').click(function () {
     //   iziToast.success({timeout: 5000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
     // }); 
-  
+
+
+
+// function for country state and city 
+$(document).ready(function() {
+
+      $('#country').change(function() {
+          loadState($(this).find(':selected').val())
+      })
+      $('#state').change(function() {
+          loadCity($(this).find(':selected').val())
+      })
+
+});
+// define function for country 
+function loadCountry(){
+  $.ajax({
+    type: "POST",
+    url : "ajax.php",
+    data: "get=country"
+  }).done(function(result){
+    
+    $(result).each(function(){
+      $("#country").append($(result));
+    })
+  });
+}
+function loadState(countryId){
+  $("#state").childern().remove()
+  $.ajax  ({
+    type:"POST",
+    url: "ajax.php",
+    data: "get=state&countryId=" + countryId
+  }).done(function(result) {
+    // console.log(result); 
+    $("#state").append($(result));
+
+  });
+}
+function loadCity(stateId) {
+  $("#city").children().remove()
+  $.ajax({
+      type: "POST",
+      url: "ajax.php",
+      data: "get=city&stateId=" + stateId
+  }).done(function(result) {
+    
+
+
+      $("#city").append($(result));
+
+  });
+}
+// init the countries
+loadCountry();
+
+            
