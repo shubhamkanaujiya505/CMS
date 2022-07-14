@@ -231,8 +231,36 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
             
             
             <div id="phone" >
+                           
+              <div>
+                <!-- Gender -->
+                <label for="gender">Gender<hr /></label>
+                <br>
+                <input type="radio" class="Gender" name="gender" id="Male" value="Male" style=" font-size: 5px;" checked />
+              <label id="male" for="Male">Male </label>
+              <span id="maleMessage" style="color: red"></span><br>
+              
+              <input type="radio" class="Gender" name="gender" onclick="" id="Female" value="Female" />
+              <label id="female" for="Female">Female </label>
+              <span id="femaleMessage" style="color: red"></span>
+            </div>
+
+            <div>
+              <!-- Date of Birth -->
+              <label for="DOB">Date of Birth
+                <hr />
+              </label>
+              <i class="fas fa-user"></i>
+              <input type="Date" class="inputs" name="dob" id="dob" value="" />
+
+              <span id="DOBMessage" style="color: red"></span>
+            </div>
+            
+            <div>
+
+            <div id="phone" >
               <!-- Select Country code -->
-              <label id="dropdown" for="Select Country Code">Mobile
+              <label id="dropdown" for="Select Country Code">Country Code
                 <hr />
               </label>
               <i class="fas fa-user"></i>
@@ -454,40 +482,24 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
               </select>
               <span id="countryCodeMessage" style="color: red"></span>
             </div>
+
+             <!-- Select Country code -->
+             <label id="dropdown" for="Select Country Code">Mobile
+                <hr />
+              </label>
+              <i class="fas fa-user"></i>
             <div>
-              <!-- <i class="fas fa-user"></i> -->
-              
               <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value=""
                 placeholder="Enter your Mobile Number"  />
                 <span id="mobileNumberMessage" style="color: red"></span>
               </div>
-              
-              <div>
-                <!-- Gender -->
-                <label for="gender">Gender<hr /></label>
-                <br>
-                <input type="radio" class="Gender" name="gender" id="Male" value="Male" style=" font-size: 5px;" checked />
-              <label id="male" for="Male">Male </label>
-              <span id="maleMessage" style="color: red"></span><br>
-              
-              <input type="radio" class="Gender" name="gender" onclick="" id="Female" value="Female" />
-              <label id="female" for="Female">Female </label>
-              <span id="femaleMessage" style="color: red"></span>
-            </div>
+           
 
-            <div>
-              <!-- Date of Birth -->
-              <label for="DOB">Date of Birth
-                <hr />
-              </label>
-              <i class="fas fa-user"></i>
-              <input type="Date" class="inputs" name="dob" id="dob" value="" />
 
-              <span id="DOBMessage" style="color: red"></span>
-            </div>
-            
-            <div>
-              <!-- Select State -->
+
+
+
+              <!-- Select State
               <label for="Select_State">Select State
                 <hr />
               </label>
@@ -533,8 +545,47 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
                 <option value="West Bengal">West Bengal</option>
             </select>
               <span id="selectStateMessage" style="color: red"></span>
-            </div>
+            </div> -->
             
+
+            <div class="container">
+            <div class="row">
+                <!--Course -->
+
+                      <form action="" name="frm" method="post">
+                    <i class="fas fa-user"></i>
+                   
+                    <section class="courses-section">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="country">Country</label>
+                                <select type="text" name="country" id="country" class="form-control">
+                                    <option>Select Country</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="state">State</label>
+                                <select type="text" id="state" name="state" class="form-control"></select>
+                            </div>
+
+
+
+                            <div class="col-md-4">
+                                <label for="city">City</label>
+                                <select name="city" id="city" class="form-control"></select>
+                            </div>
+
+                        </div>
+
+                        </div>
+                    </section>
+                </form>
+            </div>
+
+
+
+
             <div>
               <!-- Address -->
               <label for="Address">Address
@@ -612,7 +663,9 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
 
 </div>
       <!-- JavaScript page link -->
-  <script src="Registration_form_script.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="Registration_form_script.js"></script>
+
  
 </body>
 </html>

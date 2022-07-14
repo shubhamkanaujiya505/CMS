@@ -1,6 +1,7 @@
 <?php
 
 // create session 
+
     session_start();
 ?>
 
@@ -22,33 +23,35 @@
 <link rel="stylesheet" href="LoginStyle.css">
 <title>login page</title>
 
-</head>
 
-<body style="background-image: url('kids.jpg'); background-size:cover">
+</head>
+<!-- style="background-image: url('kids.jpg'); background-size:cover" -->
+<body >
 
     <!-- Create a box  -->  
 <div class="center">
     <h1 style="background-color:lightseagreen; padding-top: 20px;margin:0px !important" > Login</h1>
 
     <!-- create form  using post method-->
-    <form action="#" style="background-color:aquamarine;" method="POST" autocomplete="off" >  
+    <form action="#" style="background-color:aquamarine;" method="POST" onsubmit="return validlogin()" autocomplete="off" >  
     <div class="form" >
 
         <!-- add username  -->
-        <input type="text" name="username" class="textfield" placeholder="Username">
+        <input type="text" name="username" id="userName" class="textfield" placeholder="Username">
+        <span id="USERNAMEfailMessage" style="color: #ff8500; "></span>
         
         <!-- add Password  -->
-        <input type="password" name="password" id="fail" class="textfield" placeholder="Password">
-        <span id="failmessage" style="color: red"></span>
+        <input type="password" name="password" id="secure" class="textfield" placeholder="Password">
+        <span id="PASSWORDfailMessage" style="color: #ff8500;"></span>
 
         <!-- add forget option  -->
-        <div class="forgetpass"><a href="#" class="link" onclick="message()">ForgetPassword ?</a></div>
+        <div class="forgetpass" id="forgetpass"><a href="#" class="link" onclick="message()">ForgetPassword ?</a></div>
        
         <!-- add submit button  -->
         <input type="submit" class="submit" name="login" value="Submit">
 
         <!-- add Register page  -->
-        <div class="signup">New Member ?<a href="#" class="link"> Signup Here</a></div>
+        <div class="signup" id="signUp">New Member ?<a href="#" class="link"> Signup Here</a></div>
     </div>
     
     
@@ -102,7 +105,8 @@
     // }
 
 </script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="Registration_form_script.js"></script>
 </body>
 </html>
 
@@ -111,6 +115,7 @@
 // Connection database 
 
     error_reporting(E_ALL);
+    ini_set("display_errors","1");
     $servername = "localhost"; //servername
     $username = "root"; // server username
     $password = "123456"; //  server password
@@ -161,10 +166,11 @@
         $pass = $res->Password;
 
         $decrypted_data = openssl_decrypt($pass, $cipher, $encryption_key, 0, $iv);
-        // var_dump($password == $decrypted_data);
+         var_dump($password == $decrypted_data);
         // die;
         if($password == $decrypted_data)
         {
+          echo "dfsf";
           $_SESSION['user_name'] = $username;
           header('location:Display.php');
         }else{
@@ -172,5 +178,5 @@
         
         }
     }
-    
+
 ?>
