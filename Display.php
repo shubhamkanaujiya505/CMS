@@ -99,7 +99,9 @@ session_start();
             <th>Mobile Number</th>
             <th>Gender</th>
             <th>Date Of Birth</th>
+            <th>Country</th>
             <th>State</th>
+            <th>City</th>
             <th>Address</th>
             <th>Email</th>
             <!-- <th>Password</th> -->
@@ -193,7 +195,9 @@ session_start();
             }
             ?></td>
             <td><?php  echo $res['Date_Of_Birth']; ?></td>
+            <td><?php  echo $res['Country']; ?></td>
             <td><?php  echo $res['State']; ?></td>
+            <td><?php  echo $res['city']; ?></td>
             <td><?php  echo $res['Address']; ?></td>
             <td><?php  echo $res['Email']; ?></td>
             <!-- <td><?php  echo $res['Password']; ?></td> -->

@@ -23,9 +23,10 @@ $name = $res->Student_Name;
 $fathername = $res->Father_Name;
 $mobilenumber = $res->Mobile_Number;
 $gender = $res->Gender;
-
 $dob = $res->Date_Of_Birth;
-$state = $res->State;
+$Co_untry = $res->Country;
+$St_ate = $res->State;
+$Ci_ty = $res->city;
 $address = $res->Address;
 $email = $res->Email;
 $File = $res->FileUpload;
@@ -164,22 +165,48 @@ $File = $res->FileUpload;
               <span id="DOBMessage" style="color: red"></span>
             </div>
 
-            <div>
+          
               <!-- Select State -->
               
-              <label for="Select_State">Select State
-                <hr />
-              </label>
-              <i class="fas fa-user"></i>
-              <select name="state" id="State" class="inputs" value="<?php  echo $state; ?>">
-                <option value="">Choose an option</option>
-                <option value="Goa"><b>Goa</b></option>
-                <option value="Gujrat"><b>Gujrat</b></option>
-                <option value="New_Delhi"><b>New Delhi</b></option>
-                <option value="Uttar_Pradesh"><b>Uttar Pradesh</b></option>
-              </select>
-              <span id="selectStateMessage" style="color: red"></span>
-            </div>
+            <!-- <div class="container"> -->
+            <div class="row">
+                <!--Course -->
+
+                  
+                    <i class="fas fa-user"></i>
+                   
+                    <section class="courses-section">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="country">Country</label>
+                                <select type="text" name="country" id="country" value="<?php  echo $Co_untry; ?>" class="form-control">
+                                  <span id="selectcountryMessage" style="color: red"></span>
+                                    <option>Select Country</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="state">State</label>
+                                <select type="text" id="state" value="<?php  echo $St_ate; ?> name="state" class="form-control"></select>
+                                <span id="selectstateMessage" style="color: red"></span>
+                            </div>
+
+
+
+                            <div class="col-md-4">
+                                <label for="city">City</label>
+                                <select name="city" id="city" value="<?php  echo $Ci_ty; ?> class="form-control"></select>
+                                <span id="selectcityMessage" style="color: red"></span>
+                            </div>
+
+                        </div>
+
+                </div>
+         
+
+            </section>
+          
+         <!-- </div> -->
 
             <div>
               <!-- Address -->
@@ -187,10 +214,11 @@ $File = $res->FileUpload;
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <textarea name="Address" id="Address" class="inputs" placeholder="Enter your Address" rows="4" value="<?php  echo $address; ?>"></textarea>
+              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4" value="<?php  echo $address; ?>"></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
 
+          
             <div>
               <!-- E-mail -->
               <label for="email">E-mail
@@ -212,9 +240,7 @@ $File = $res->FileUpload;
               <span id="fileMessage" style="color: red"></span>
             </div>
             <!-- Submit button -->
-            <button type="submit" name="submit" value="submit" style="margin:0%;" >Update Details</button>
-            <!-- Reset button -->
-            <button type="reset" value="Reset">Reset</button>
+            <button type="submit" name="submit" value="submit" style="border-radius: 7px; border: none;"><a href="Display.php" style="text-align: center; color: white; font-weight: 900;">Update Details</a></button>
   
           </form>
     </div>
