@@ -1,5 +1,5 @@
 <?php
-
+ob_start(); //add when header('location:Display.php'); gives error message
 // create session 
 
     session_start();
@@ -118,11 +118,11 @@
     ini_set("display_errors","1");
     $servername = "localhost"; //servername
     $username = "root"; // server username
-    $password = "123456"; //  server password
+    $dbpass = "123456"; //  server password
     $dbname = "Form"; //database name
     
     // store all value in conn variable
-    $conn = mysqli_connect($servername,$username,$password,$dbname);
+    $conn = mysqli_connect($servername,$username,$dbpass,$dbname);
     
     // check connection_status
     if($conn){
@@ -166,11 +166,10 @@
         $pass = $res->Password;
 
         $decrypted_data = openssl_decrypt($pass, $cipher, $encryption_key, 0, $iv);
-         var_dump($password == $decrypted_data);
+        //  var_dump($password == $decrypted_data);
         // die;
         if($password == $decrypted_data)
         {
-          echo "dfsf";
           $_SESSION['user_name'] = $username;
           header('location:Display.php');
         }else{
