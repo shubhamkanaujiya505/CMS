@@ -1,11 +1,12 @@
 <?php
+ob_start(); 
 // start session
 session_start();
 if(isset($_POST) & !empty($_POST)){
   // CSRF Token Validation
     if(isset($_POST['token'])){
       if($_POST['token'] == $_SESSION['csrf_token']){
-        echo "CSRF token validation success";
+        // echo "CSRF token validation success";
       }else{
         echo "Problem with CSRF token Verification";
       }
@@ -45,25 +46,27 @@ mysqli_select_db($con,'Form');
 
 // when clicked on submit button data is save
 if(isset($_POST['submit'])){
-
-    // Taking all values from the form data(input)
-
-//   $name =  $_POST['name'];
-//   $fathername = $_POST['fathername'];
-//   $mobilenumber =  $_POST['mobilenumber'];
-//   $gender =  $_POST['gender'];
-//   $dob =  $_POST['dob'];
-//   $state =  $_POST['state'];
-//   $Address = $_POST['Address'];
-//   $email = $_POST['email'];
-//   $Password = $_POST['password'];
-//   $File = $_POST['file'];
+  
+  // Taking all values from the form data(input)
+  
+  //   $name =  $_POST['name'];
+  //   $fathername = $_POST['fathername'];
+  //   $mobilenumber =  $_POST['mobilenumber'];
+  //   $gender =  $_POST['gender'];
+  //   $dob =  $_POST['dob'];
+  //   $state =  $_POST['state'];
+  //   $Address = $_POST['Address'];
+  //   $email = $_POST['email'];
+  //   $Password = $_POST['password'];
+  //   $File = $_POST['file'];
   $value['name'] =  $_REQUEST['name'];
   $value['fathername'] = $_REQUEST['fathername'];
   $value['mobilenumber'] =  $_REQUEST['mobilenumber'];
   $value['gender'] =  $_REQUEST['gender'];
   $value['dob'] =  $_REQUEST['dob'];
-  $value['state'] =  $_REQUEST['state'];
+  $value['C_ountry'] =  $_REQUEST['country'];
+  $value['S_tate'] =  $_REQUEST['state'];
+  $value['C_ity'] =  $_REQUEST['city'];
   $value['Address'] = $_REQUEST['Address'];
   $value['email'] = $_REQUEST['email'];
   $value['Password'] = $_REQUEST['password'];
@@ -74,7 +77,7 @@ if(isset($_POST['submit'])){
   // for encrypt our database password
   // $value['Password'] = password_hash($value['Password'],PASSWORD_DEFAULT);
   //Define cipher
-$cipher = "aes-256-cbc";
+  $cipher = "aes-256-cbc";
 
 //Generate a 256-bit encryption key
 $encryption_key = "shubhamkanaujiya";
@@ -98,41 +101,41 @@ $cipher = "aes-256-cbc";
 $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key, 0, $iv);
 
 // echo "Decrypted Text: " . $decrypted_data;
-  
-  if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$value['email']}'"))>0){
 
-    // echo (alert(""));
-    echo '<script>alert("Email id already exist")</script>';
-  }else{
+if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$value['email']}'"))>0){
+  
+  // echo (alert(""));
+  echo '<script>alert("Email id already exist")</script>';
+}else{
 // echo ("hello ");
-  $v = '"' . implode('", "', $value) . '"';
+$v = '"' . implode('", "', $value) . '"';
     // taking input in db table
-    $q = "INSERT INTO StudentForm (Student_Name,Father_Name,Mobile_Number,Gender,Date_Of_Birth,State,Address,Email,Password,FileUpload) values(".$v.")";
+    $q = "INSERT INTO StudentForm (Student_Name,Father_Name,Mobile_Number,Gender,Date_Of_Birth,Country,State,city,Address,Email,Password,FileUpload) values(".$v.")";
 //    echo $q;
 //$name,$fathername,$mobilenumber,$gender,$dob,$state,$Address,$email,$Password,$File
-    $query = mysqli_query($con,$q) or die(mysqli_error($con));
- //   die;
+$query = mysqli_query($con,$q) or die(mysqli_error($con));
+//   die;
 //  echo '<script>alert("User register successfully")</script>';   
 }}
 ?>
   <!-- add show details button  -->
   <!-- <div class="row" id="table">
-            <div class="col-md-9" style="margin:0.2rem;"></div>
+    <div class="col-md-9" style="margin:0.2rem;"></div>
             <div class="col-md-2"> -->
-            <!-- add new record button -->
-           <!-- <button type="button" id="addNewRecord"  style="float:right;margin:1rem" value="Show Records" class="btn btn-small btn-success" style="width: 0px;" ><a href="Display.php" class="text-white">show Records</a></button>
+              <!-- add new record button -->
+              <!-- <button type="button" id="addNewRecord"  style="float:right;margin:1rem" value="Show Records" class="btn btn-small btn-success" style="width: 0px;" ><a href="Display.php" class="text-white">show Records</a></button>
         </div>
         <div>
-        <button type="button" id="addNewRecords"  style="float:right;margin:2rem" value="Show Records" class="btn btn-small btn-success" ><a href="login.php" class="text-white">Existing User Login</a></button>
+          <button type="button" id="addNewRecords"  style="float:right;margin:2rem" value="Show Records" class="btn btn-small btn-success" ><a href="login.php" class="text-white">Existing User Login</a></button>
         </div>
       </div> -->
     <!-- <div id="header">
       <button type="button" class="btn btn-success"><a href="Display.php" class="text-black">show Records</a></button>
       <button type="button" class="btn btn-success"><a href="login.php" class="text-black">Existing User Login</a></button>
     </div> -->
-
+    
         <!-- Navigation bar  -->
-<!-- <div> -->
+        <!-- <div> -->
 <nav id="navigation" class="navbar navbar-expand-sm navbar-green bg-green">
   <div class="container-fluid">
     <a class="navbar-brand" style="font-size: 30px; font-family: 'Edu TAS Beginner', cursive; color: lightskyblue"><b>Avalon Aurora High School</b></a>
@@ -151,15 +154,15 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
     </div> 
   </div>
  </nav>
-<!-- </div>  -->
-
-<!-- Navigation bar end  -->
+ <!-- </div>  -->
+ 
+ <!-- Navigation bar end  -->
 
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- CSS page link  -->
   <link rel="stylesheet" href="Registration_form_style.css" />
@@ -169,12 +172,15 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- add iziToast css -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/izitoast/dist/css/iziToast.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <!-- end iziToast css -->
-     <!-- add iziToast js -->
+  <!-- for coutry state city validation  -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="Registration_form_script.js"></script>
+  <!-- add iziToast css -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/izitoast/dist/css/iziToast.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <!-- end iziToast css -->
+  <!-- add iziToast js -->
     <!-- <script src="https://unpkg.com/izitoast/dist/js/iziToast.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
@@ -198,8 +204,7 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
     <div class="panel panel-default" id="form" >
       <form method="post" name="registration" onsubmit="return validation()"> 
 
-  
-      
+
          <div class="title">
               <h1 class="text-white bg-blue text-center">
                 <b>Student Registration Form</b>
@@ -493,11 +498,18 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
                 placeholder="Enter your Mobile Number"  />
                 <span id="mobileNumberMessage" style="color: red"></span>
               </div>
+
+
+              <!-- <label id="dropdown" for="Select Country Code">Mobile
+                <hr />
+              </label>
+              <form>
+                <div class="input-group">
+                  <input type="tel" class="form-control">
+                  <span class="input-group-addon">Tel</span>
+                </div>
+              </form> -->
            
-
-
-
-
 
               <!-- Select State
               <label for="Select_State">Select State
@@ -552,7 +564,7 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
             <div class="row">
                 <!--Course -->
 
-                      <form action="" name="frm" method="post">
+                  
                     <i class="fas fa-user"></i>
                    
                     <section class="courses-section">
@@ -560,13 +572,15 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
                             <div class="col-md-4">
                                 <label for="country">Country</label>
                                 <select type="text" name="country" id="country" class="form-control">
-                                    <option>Select Country</option>
+                                  <span id="countryMessage" style="color: red"></span>
+                                    <option value="">Select Country</option>
                                 </select>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="state">State</label>
                                 <select type="text" id="state" name="state" class="form-control"></select>
+                                <span id="stateMessage" style="color: red"></span>
                             </div>
 
 
@@ -574,14 +588,17 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
                             <div class="col-md-4">
                                 <label for="city">City</label>
                                 <select name="city" id="city" class="form-control"></select>
+                                <span id="cityMessage" style="color: red"></span>
                             </div>
 
                         </div>
 
-                        </div>
-                    </section>
-                </form>
-            </div>
+                </div>
+           
+
+            </section>
+          
+         </div>
 
 
 
@@ -592,7 +609,7 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <textarea name="Address" id="Address" class="inputs" placeholder="Enter your Address" rows="4"></textarea>
+              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4"></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
             
@@ -663,8 +680,6 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
 
 </div>
       <!-- JavaScript page link -->
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-      <script src="Registration_form_script.js"></script>
 
  
 </body>
