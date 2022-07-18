@@ -109,7 +109,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
 }else{
 // echo ("hello ");
 $v = '"' . implode('", "', $value) . '"';
-    // taking input in db table
+    // insert data in db table
     $q = "INSERT INTO StudentForm (Student_Name,Father_Name,Mobile_Number,Gender,Date_Of_Birth,Country,State,city,Address,Email,Password,FileUpload) values(".$v.")";
 //    echo $q;
 //$name,$fathername,$mobilenumber,$gender,$dob,$state,$Address,$email,$Password,$File
@@ -174,7 +174,7 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
 
   <!-- for coutry state city validation  -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="Registration_form_script.js"></script>
+  
   <!-- add iziToast css -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://unpkg.com/izitoast/dist/css/iziToast.min.css">
@@ -241,11 +241,11 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
                 <!-- Gender -->
                 <label for="gender">Gender<hr /></label>
                 <br>
-                <input type="radio" class="Gender" name="gender" id="Male" value="Male" style=" font-size: 5px;" checked />
+                <input type="radio" class="Gender" name="gender" id="Male" value="1" style=" font-size: 5px;" checked />
               <label id="male" for="Male">Male </label>
               <span id="maleMessage" style="color: red"></span><br>
               
-              <input type="radio" class="Gender" name="gender" onclick="" id="Female" value="Female" />
+              <input type="radio" class="Gender" name="gender" onclick="" id="Female" value="0" />
               <label id="female" for="Female">Female </label>
               <span id="femaleMessage" style="color: red"></span>
             </div>
@@ -263,7 +263,7 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
             
             <div>
 
-            <div id="phone" >
+            <div id="phone" style="background-color:  red;" >
               <!-- Select Country code -->
               <label id="dropdown" for="Select Country Code">Country Code
                 <hr />
@@ -486,8 +486,7 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <option value="ZW">Zimbabwe (+263)</option>
               </select>
               <span id="countryCodeMessage" style="color: red"></span>
-            </div>
-
+           
              <!-- Select Country code -->
              <label id="dropdown" for="Select Country Code">Mobile
                 <hr />
@@ -497,6 +496,7 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value=""
                 placeholder="Enter your Mobile Number"  />
                 <span id="mobileNumberMessage" style="color: red"></span>
+              </div>
               </div>
 
 
@@ -509,56 +509,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
                   <span class="input-group-addon">Tel</span>
                 </div>
               </form> -->
-           
-
-              <!-- Select State
-              <label for="Select_State">Select State
-                <hr />
-              </label>
-              <i class="fas fa-user"></i>
-              <select name="state" id="State" class="inputs">
-
-                <option value="#">Select-State</option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar</option>
-                <option value="Chandigarh">Chandigarh</option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
-                <option value="Daman and Diu">Daman and Diu</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Lakshadweep">Lakshadweep</option>
-                <option value="Puducherry">Puducherry</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat</option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                <option value="Jharkhand">Jharkhand</option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya</option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Odisha">Odisha</option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Tripura">Tripura</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Uttarakhand">Uttarakhand</option>
-                <option value="West Bengal">West Bengal</option>
-            </select>
-              <span id="selectStateMessage" style="color: red"></span>
-            </div> -->
-            
 
             <div class="container">
             <div class="row">
@@ -583,9 +533,7 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
                                 <span id="stateMessage" style="color: red"></span>
                             </div>
 
-
-
-                            <div class="col-md-4">
+                         <div class="col-md-4">
                                 <label for="city">City</label>
                                 <select name="city" id="city" class="form-control"></select>
                                 <span id="cityMessage" style="color: red"></span>
@@ -594,14 +542,10 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
                         </div>
 
                 </div>
-           
-
+ 
             </section>
           
          </div>
-
-
-
 
             <div>
               <!-- Address -->
@@ -681,6 +625,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
 </div>
       <!-- JavaScript page link -->
 
- 
+      <script src="Registration_form_script.js"></script>
 </body>
 </html>

@@ -80,7 +80,7 @@ ob_start(); //add when header('location:Display.php'); gives error message
 <script>
     // make function logic 
     function message() {
-            alert("Remember your password");        
+        alert("Remember your password");        
     }
 
     // function Fail() {

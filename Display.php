@@ -172,6 +172,7 @@ session_start();
         $q = "INSERT INTO StudentForm (FileUpload)
         values('$destinationfile')";
     }
+        // taking data from db to display page 
         $q = "select * from StudentForm";
         $query = mysqli_query($con,$q);
         $x=1;

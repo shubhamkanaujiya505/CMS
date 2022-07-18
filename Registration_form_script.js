@@ -33,7 +33,7 @@ function validation() {
     document.getElementById('maleMessage').innerHTML = '';
     document.getElementById('femaleMessage').innerHTML = '';
     document.getElementById('DOBMessage').innerHTML = '';
-    // document.getElementById('countryMessage').innerHTML = '';
+    document.getElementById('countryMessage').innerHTML = '';
     document.getElementById('stateMessage').innerHTML = '';
     document.getElementById('cityMessage').innerHTML = '';
     document.getElementById('addressMessage').innerHTML = '';
@@ -144,19 +144,19 @@ function validation() {
     // create a validation logic for Dropdown
     if (country == '') {
         document.getElementById('countryMessage').innerHTML ='** please select your country';
-        document.getElementById("State").focus();
+        document.getElementById("country").focus();
         success = false;
     }
     
     if (state == '') {
         document.getElementById('stateMessage').innerHTML ='** please select your State';
-        document.getElementById("State").focus();
+        document.getElementById("state").focus();
         success = false;
     }
     
     if (city == '') {
         document.getElementById('cityMessage').innerHTML ='** please select your city';
-        document.getElementById("State").focus();
+        document.getElementById("city").focus();
         success = false;
     }
     
@@ -223,10 +223,7 @@ function validation() {
       success = false;
     }
   
-    return success;
-  
-
-  
+    return success; 
   }
     //   // settings
     // iziToast.settings({
