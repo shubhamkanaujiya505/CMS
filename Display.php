@@ -225,7 +225,7 @@ session_start();
             
             <td> <img src="<?php echo 'http://localhost/Res_form/RF/uploadfiles/'.$res['FileUpload']; ?>" height="20px" width="20px" ></td>
                              
-            <td><button class="btn-danger btn" > <a href="Delete.php?del=<?php echo $res['SrNo']; ?>" onclick="return deletevalidity()" class="text-white">Delete</a></button> </td>
+            <td><button class="btn-danger btn" > <a href="Delete.php?del=<?php echo $res['SrNo']; ?>" onclick='return confirm("Sure you want to delete!");' class="text-white">Delete</a></button> </td>
             <td><button class="btn-primary btn"> <a href="Update.php?Updates=<?php echo $res['SrNo']; ?>" class="text-white">Update</a></button> </td>
             
 
@@ -243,22 +243,22 @@ session_start();
    <script> 
 
 //    sweet alert for delete confirmation 
-   function deletevalidity(){
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-        .then((willDelete) => {
-        if (willDelete) {
-            console.log('yes');
-        } else {
-            console.log('cancel');
-        }
-        });
-     }
+//    function deletevalidity(){
+//     swal({
+//         title: "Are you sure?",
+//         text: "Once deleted, you will not be able to recover this file!",
+//         icon: "warning",
+//         buttons: true,
+//         dangerMode: true,
+//         })
+//         .then((willDelete) => {
+//         if (willDelete) {
+//             console.log('yes');
+//         } else {
+//             console.log('cancel');
+//         }
+//         });
+//      }
    
  
             //         // settings
