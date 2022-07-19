@@ -51,7 +51,7 @@ ob_start(); //add when header('location:Display.php'); gives error message
         <input type="submit" class="submit" name="login" value="Submit">
 
         <!-- add Register page  -->
-        <div class="signup" id="signUp">New Member ?<a href="#" class="link"> Signup Here</a></div>
+        <div class="signup" id="signUp" style="text-align: center;">New Member ?<a href="Registration.php" class="link"> Signup Here</a></div>
     </div>
     
     
@@ -68,7 +68,7 @@ ob_start(); //add when header('location:Display.php'); gives error message
         
       </ul>
       <form class="d-flex" >
-        <button class="btn btn-dark" type="button" style="width: 10%;">Login</button>
+        <!-- <button class="btn btn-dark" type="button" style="width: 10%;">Login</button> -->
         <button class="btn btn-dark"> <a href="Registration.php" type="button" style="text-decoration: none; text-align:center; color:white;" >SignUp</a></button>
         <button class="btn btn-dark" type="button" style="width: 10%;">FAQ</button>
       </form>
@@ -103,6 +103,9 @@ ob_start(); //add when header('location:Display.php'); gives error message
     //     }
         
     // }
+  function loginfail(){
+    alert("login fail");
+  }
 
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -143,7 +146,7 @@ ob_start(); //add when header('location:Display.php'); gives error message
 
       //print_r($_POST);
         // call username and password using post method 
-        $username = $_POST['username'];
+        $userName = $_POST['username'];
         $password = $_POST['password'];
         
         // use session before login 
@@ -160,20 +163,19 @@ ob_start(); //add when header('location:Display.php'); gives error message
 // echo 'dfsfsd'.$decrypted_data;
 // die;
         // matching username and password are correct or not from db
-        $query = "SELECT Password FROM StudentForm where Email = '$username'"; 
+        $query = "SELECT Password FROM StudentForm where Email = '$userName'"; 
         $data = mysqli_query($conn, $query); 
         $res = mysqli_fetch_object($data);
         $pass = $res->Password;
-
         $decrypted_data = openssl_decrypt($pass, $cipher, $encryption_key, 0, $iv);
         //  var_dump($password == $decrypted_data);
         // die;
         if($password == $decrypted_data)
         {
-          $_SESSION['user_name'] = $username;
+          $_SESSION['user_name'] = $userName;
           header('location:Display.php');
         }else{
-        echo ("Login Failed");
+         
         
         }
     }

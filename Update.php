@@ -27,7 +27,7 @@ $dob = $res->Date_Of_Birth;
 $Co_untry = $res->Country;
 $St_ate = $res->State;
 $Ci_ty = $res->city;
-$address = $res->Address;
+$up_address = $res->Address;
 $email = $res->Email;
 $File = $res->FileUpload;
 // echo "<pre>";print_r($res);exit;
@@ -187,7 +187,7 @@ $File = $res->FileUpload;
 
                             <div class="col-md-4">
                                 <label for="state">State</label>
-                                <select type="text" id="state" value="<?php  echo $St_ate; ?> name="state" class="form-control"></select>
+                                <select type="text" id="state" value="<?php  echo $St_ate; ?>" name="state" class="form-control"></select>
                                 <span id="selectstateMessage" style="color: red"></span>
                             </div>
 
@@ -195,7 +195,7 @@ $File = $res->FileUpload;
 
                             <div class="col-md-4">
                                 <label for="city">City</label>
-                                <select name="city" id="city" value="<?php  echo $Ci_ty; ?> class="form-control"></select>
+                                <select name="city" id="city" value="<?php  echo $Ci_ty; ?>" class="form-control"></select>
                                 <span id="selectcityMessage" style="color: red"></span>
                             </div>
 
@@ -214,7 +214,7 @@ $File = $res->FileUpload;
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4" value="<?php  echo $address; ?>"></textarea>
+              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4" value="<?php  echo $up_address; ?>"></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
 
