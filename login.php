@@ -103,6 +103,9 @@ ob_start(); //add when header('location:Display.php'); gives error message
     //     }
         
     // }
+  function loginfail(){
+    alert("login fail");
+  }
 
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -173,7 +176,7 @@ ob_start(); //add when header('location:Display.php'); gives error message
           $_SESSION['user_name'] = $username;
           header('location:Display.php');
         }else{
-        echo ("Login Failed");
+         
         
         }
     }

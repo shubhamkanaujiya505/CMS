@@ -173,9 +173,14 @@ session_start();
         values('$destinationfile')";
     }
         // taking data from db to display page 
+       
+
         $q = "select * from StudentForm";
         $query = mysqli_query($con,$q);
+
         $x=1;
+
+
          while($res = mysqli_fetch_array($query)){
             
          ?>
@@ -196,9 +201,22 @@ session_start();
             }
             ?></td>
             <td><?php  echo $res['Date_Of_Birth']; ?></td>
-            <td><?php  echo $res['Country']; ?></td>
-            <td><?php  echo $res['State']; ?></td>
-            <td><?php  echo $res['city']; ?></td>
+            <td><?php $cid  = $res['Country'];
+             $Conquery = mysqli_query($con,"select id,name from tbl_countries where id=$cid limit 1");
+             $cdata = mysqli_fetch_assoc($Conquery);
+                if($cid==$cdata['id']){ echo $cdata['name'];}else{ echo "-";}  ?></td>
+            <td><?php  $sid = $res['State'];
+            $statequery = mysqli_query($con,"select id,name from tbl_states where id = $sid limit 1");
+            $statedata = mysqli_fetch_assoc($statequery);
+            if($sid ==$statedata['id']){
+                echo $statedata['name'];
+            } ?></td>
+            <td><?php  $ciid = $res['city'];
+            $cityquery = mysqli_query($con,"select id,name from tbl_cities where id = $ciid limit 1"); 
+            $citydata = mysqli_fetch_assoc($cityquery);
+            if($ciid == $citydata['id']){
+                echo $citydata['name'];
+              }  ?></td>
             <td><?php  echo $res['Address']; ?></td>
             <td><?php  echo $res['Email']; ?></td>
             <!-- <td><?php  echo $res['Password']; ?></td> -->
@@ -207,7 +225,7 @@ session_start();
             
             <td> <img src="<?php echo 'http://localhost/Res_form/RF/uploadfiles/'.$res['FileUpload']; ?>" height="20px" width="20px" ></td>
                              
-            <td><button class="btn-danger btn" > <a href="Delete.php?del=<?php echo $res['SrNo']; ?>" onclick="return confirm('Are you sure you want to delete')" class="text-white">Delete</a></button> </td>
+            <td><button class="btn-danger btn" > <a href="Delete.php?del=<?php echo $res['SrNo']; ?>" onclick="return deletevalidity()" class="text-white">Delete</a></button> </td>
             <td><button class="btn-primary btn"> <a href="Update.php?Updates=<?php echo $res['SrNo']; ?>" class="text-white">Update</a></button> </td>
             
 
@@ -222,62 +240,82 @@ session_start();
            </table>
         </div>
     </div>
-    <!-- <script>
+   <script> 
 
-                    // settings
-                iziToast.settings({
-                timeout: 300000, // default timeout
-                resetOnHover: true,
-                // icon: '', // icon class
-                transitionIn: 'flipInX',
-                transitionOut: 'flipOutX',
-                position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-                onOpen: function () {
-                    console.log('callback abriu!');
-                },
-                onClose: function () {
-                    console.log("callback fechou!");
-                }
-                });
+//    sweet alert for delete confirmation 
+   function deletevalidity(){
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            console.log('yes');
+        } else {
+            console.log('cancel');
+        }
+        });
+     }
+   
+ 
+            //         // settings
+            //     iziToast.settings({
+            //     timeout: 300000, // default timeout
+            //     resetOnHover: true,
+            //     // icon: '', // icon class
+            //     transitionIn: 'flipInX',
+            //     transitionOut: 'flipOutX',
+            //     position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+            //     onOpen: function () {
+            //         console.log('callback abriu!');
+            //     },
+            //     onClose: function () {
+            //         console.log("callback fechou!");
+            //     }
+            //     });
 
-                // custom toast
-                $('#customClick').click(function () {
+            //     // custom toast
+            //     $('#customClick').click(function () {
 
-                iziToast.show({
-                    color: 'red',
-                    icon: 'fa fa-user',
-                    title: 'Hey',
-                    message: 'Are you sure you want to Delete!',
-                    position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
-                    progressBarColor: 'rgb(0, 255, 184)',
-                    buttons: [
-                    [
-                        '<button>Ok</button>',
-                        function (instance, toast) {
-                           echo ($deletes);
-                        }
-                    ],
-                    [
-                        '<button>Close</button>',
-                        function (instance, toast) {
-                        instance.hide({
-                            transitionOut: 'fadeOutUp'
-                        }, toast);
-                        }
-                    ]
-                    ]
-                });
+            //     iziToast.show({
+            //         color: 'red',
+            //         icon: 'fa fa-user',
+            //         title: 'Hey',
+            //         message: 'Are you sure you want to Delete!',
+            //         position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+            //         progressBarColor: 'rgb(0, 255, 184)',
+            //         buttons: [
+            //         [
+            //             '<button>Ok</button>',
+            //             function (instance, toast) {
+            //                echo ($deletes);
+            //             }
+            //         ],
+            //         [
+            //             '<button>Close</button>',
+            //             function (instance, toast) {
+            //             instance.hide({
+            //                 transitionOut: 'fadeOutUp'
+            //             }, toast);
+            //             }
+            //         ]
+            //         ]
+            //     });
 
-                }); // ! .click()
+            //     }); // ! .click()
 
-            $('#any').click(function(){
-            iziToast.error({
-                title: 'Error',
-                message: 'iziToast.error()'
-            });
-            });
+            // $('#any').click(function(){
+            // iziToast.error({
+            //     title: 'Error',
+            //     message: 'iziToast.error()'
+            // });
+            // }); -->
 
-</script> -->
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
 <!-- <a href="logout.php"><input type="submit" name="" value="LogOut" style="background:blue; color:white; height: 35px; width: 100px; margin: top 20px; margin-left: 5px; font: size 18px; border:0; border-radius: 5px; cursor:pointer"></a> -->
