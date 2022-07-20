@@ -45,7 +45,7 @@ ob_start(); //add when header('location:Display.php'); gives error message
         <span id="PASSWORDfailMessage" style="color: #ff8500;"></span>
 
         <!-- add forget option  -->
-        <div class="forgetpass" id="forgetpass"><a href="#" class="link" onclick="message()">ForgetPassword ?</a></div>
+        <div class="forgetpass" id="forgetpass"><a href="recover_email.php" class="" >ForgetPassword ?</a></div>
        
         <!-- add submit button  -->
         <input type="submit" class="submit" name="login" value="Submit">

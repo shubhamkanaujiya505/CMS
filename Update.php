@@ -60,7 +60,7 @@ $File = $res->FileUpload;
 //   $v = '"' . implode('", "', $value) . '"';
   
 //     // taking input in db table
-//     $q = "update StudentForm set SrNo = $Update,$v where SrNo=$v";
+    $q = "update StudentForm set SrNo = $Update,$v where SrNo=$v";
  
 // //$name,$fathername,$mobilenumber,$gender,$dob,$state,$Address,$email,$Password,$File
 //     $query = mysqli_query($con,$q);

@@ -202,12 +202,28 @@ session_start();
             ?></td>
             <td><?php  echo $res['Date_Of_Birth']; ?></td>
 
+            $query = select st.Student Name, st.Father Name, st.Mobile Number, st.Gender, st.Date Of Birth, st.Country, st.State, st.City, st.Address, st.Email, st.FileUpload, C.name as Country,S.name as State ,Ci.name as City from StudentForm INNER JOIN tbl_countries C ON C.id = country INNER JOIN tbl_states S ON S.id = State inner join tbl_cities Ci on Ci.id=city;
+
             <!-- get data from db to display page  -->
+            <!-- <td>  -->
+              <?php// $cid  = $res['Country'];
+            //  $Conquery = mysqli_query($con,"select id,name from tbl_countries where id=$cid limit 1");
+            //  $cdata = mysqli_fetch_assoc($Conquery);
+                // if($cid==$cdata['id']){ echo $cdata['name'];}else{ echo "-";
+                //}  ?> 
+                   <!-- </td> -->
+
+                  <!-- test start -->
             <td><?php $cid  = $res['Country'];
-             $Conquery = mysqli_query($con,"select id,name from tbl_countries where id=$cid limit 1");
-             $cdata = mysqli_fetch_assoc($Conquery);
-                if($cid==$cdata['id']){ echo $cdata['name'];}else{ echo "-";
+             $Conquery = mysqli_query($con,"select C.name as Country from StudentForm inner join tbl_countries c on C.id = Country");
+                if($cid==$Conquery['id']){ echo $Conquery['name'];}else{ echo "-";
                 }  ?></td>
+                  <!-- test end  -->
+
+
+                  
+
+
             <td><?php  $sid = $res['State'];
             $statequery = mysqli_query($con,"select id,name from tbl_states where id = $sid limit 1");
             $statedata = mysqli_fetch_assoc($statequery);
@@ -226,7 +242,7 @@ session_start();
             <!-- <td><?php  //echo $res['FileUpload']; ?></td> -->
             <!-- add file path for show image  -->
             
-            <td> <img src="<?php echo 'http://localhost/Res_form/RF/uploadfiles/'.$res['FileUpload']; ?>" height="20px" width="20px" ></td>
+            <td> <img src="./uploadfiles/<?php echo $res['FileUpload']; ?>" height="20px" width="20px" ></td>
                              
             <td><button class="btn-danger btn" > <a href="Delete.php?del=<?php echo $res['SrNo']; ?>" onclick='return confirm("Sure you want to delete!");' class="text-white">Delete</a></button> </td>
             <td><button class="btn-primary btn"> <a href="Update.php?Updates=<?php echo $res['SrNo']; ?>" class="text-white">Update</a></button> </td>
