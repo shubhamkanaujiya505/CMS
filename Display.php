@@ -201,10 +201,13 @@ session_start();
             }
             ?></td>
             <td><?php  echo $res['Date_Of_Birth']; ?></td>
+
+            <!-- get data from db to display page  -->
             <td><?php $cid  = $res['Country'];
              $Conquery = mysqli_query($con,"select id,name from tbl_countries where id=$cid limit 1");
              $cdata = mysqli_fetch_assoc($Conquery);
-                if($cid==$cdata['id']){ echo $cdata['name'];}else{ echo "-";}  ?></td>
+                if($cid==$cdata['id']){ echo $cdata['name'];}else{ echo "-";
+                }  ?></td>
             <td><?php  $sid = $res['State'];
             $statequery = mysqli_query($con,"select id,name from tbl_states where id = $sid limit 1");
             $statedata = mysqli_fetch_assoc($statequery);
@@ -318,4 +321,3 @@ session_start();
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
-<!-- <a href="logout.php"><input type="submit" name="" value="LogOut" style="background:blue; color:white; height: 35px; width: 100px; margin: top 20px; margin-left: 5px; font: size 18px; border:0; border-radius: 5px; cursor:pointer"></a> -->

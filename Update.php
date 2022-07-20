@@ -27,7 +27,7 @@ $dob = $res->Date_Of_Birth;
 $Co_untry = $res->Country;
 $St_ate = $res->State;
 $Ci_ty = $res->city;
-$up_address = $res->Address;
+$address = $res->Address;
 $email = $res->Email;
 $File = $res->FileUpload;
 // echo "<pre>";print_r($res);exit;
@@ -214,7 +214,7 @@ $File = $res->FileUpload;
                 <hr />
               </label>
               <i class="fas fa-user"></i>
-              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4" value="<?php  echo $up_address; ?>"></textarea>
+              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4" value="<?php  echo $address; ?>"></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
 

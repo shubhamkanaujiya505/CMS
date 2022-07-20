@@ -329,4 +329,23 @@ loadCountry();
 // $("input").intlTelInput({
 //   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/js/utils.js"
 // });
-            
+
+// for country Code 
+// var input = document.querySelector("#mobile_code");
+// intlTelInput(input, {
+//   initialCountry: "auto",
+//   geoIpLookup: function (success, failure) {
+//     $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+//       var countryCode = (resp && resp.country) ? resp.country : "us";
+//       success(countryCode);
+//     });
+//   },
+// });
+        
+
+// -----Country Code Selection
+$("#M_Number").intlTelInput({
+	initialCountry: "in",
+	separateDialCode: true,
+	// utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js"
+});
