@@ -202,7 +202,7 @@ session_start();
             ?></td>
             <td><?php  echo $res['Date_Of_Birth']; ?></td>
 
-            $query = select st.Student Name, st.Father Name, st.Mobile Number, st.Gender, st.Date Of Birth, st.Country, st.State, st.City, st.Address, st.Email, st.FileUpload, C.name as Country,S.name as State ,Ci.name as City from StudentForm INNER JOIN tbl_countries C ON C.id = country INNER JOIN tbl_states S ON S.id = State inner join tbl_cities Ci on Ci.id=city;
+            <!-- $query = select st.Student Name, st.Father Name, st.Mobile Number, st.Gender, st.Date Of Birth, st.Country, st.State, st.City, st.Address, st.Email, st.FileUpload, C.name as Country,S.name as State ,Ci.name as City from StudentForm INNER JOIN tbl_countries C ON C.id = country INNER JOIN tbl_states S ON S.id = State inner join tbl_cities Ci on Ci.id=city; -->
 
             <!-- get data from db to display page  -->
             <!-- <td>  -->
@@ -219,10 +219,6 @@ session_start();
                 if($cid==$Conquery['id']){ echo $Conquery['name'];}else{ echo "-";
                 }  ?></td>
                   <!-- test end  -->
-
-
-                  
-
 
             <td><?php  $sid = $res['State'];
             $statequery = mysqli_query($con,"select id,name from tbl_states where id = $sid limit 1");

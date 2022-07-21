@@ -6,7 +6,7 @@ $message = "this is simple message.";
 $header = "from:shubham.kanaujiya@gingerwebs.co.in\r\n";
 
 $result = mail($to,$subject,$message,$header); 
-
+// var_dump($result);
 if($result == true){
     echo "message sent successfully...";
 }else{

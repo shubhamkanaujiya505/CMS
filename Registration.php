@@ -239,7 +239,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <label for="name">Student Name
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="text" class="inputs" name="name" id="Name" value="<?php echo $name; ?>" placeholder="Enter your Name"  />
               <!-- Using style tag in span tag to give style in error message -->
               <span id="nameMessage" style="color: white"></span>
@@ -250,7 +249,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <label for="fathername">Father Name
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="text" class="inputs" name="fathername" id="F_Name" value="" placeholder="Enter your Father Name"  />
               <span id="fatherNameMessage" style="color: red"></span>
             </div>
@@ -276,7 +274,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <label for="DOB">Date of Birth
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="Date" class="inputs" name="dob" id="dob" value="" />
 
               <span id="DOBMessage" style="color: red"></span>
@@ -287,7 +284,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
             <label id="dropdown" for="Select Country Code">Mobile
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
             <div>
               <!-- <input type="text" id="mobile_code" class="form-control" placeholder="Phone Number" name="name"> -->
               <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value=""
@@ -314,7 +310,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
                 <!--Course -->
 
                   
-                    <i class="fas fa-user"></i>
                    
                     <section class="courses-section">
                         <div class="row">
@@ -351,7 +346,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <label for="Address">Address
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4"></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
