@@ -1,4 +1,10 @@
 <?php
+query("tab1",'col2',"where col1= 1");
+function query($table,$col = "*",$where = "",$order = ""){
+  echo "SELECT $col FROM $table $where";
+}
+
+EXIT;
 ob_start(); //add when header('location:Display.php'); gives error message
 // create session 
 
