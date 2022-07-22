@@ -107,7 +107,6 @@ $File = $res->FileUpload;
               <label for="name">Student Name
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="text" class="inputs" name="name" id="Name" value="<?php echo $name; ?>" placeholder="Enter your Name" />
               <!-- Using style tag in span tag to give style in error message -->
               <span id="nameMessage" style="color: red"></span>
@@ -118,7 +117,6 @@ $File = $res->FileUpload;
               <label for="fathername">Father Name
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="text" class="inputs" name="fathername" id="F_Name" value="<?php  echo $fathername ?>" placeholder="Enter your Father Name" />
               <span id="fatherNameMessage" style="color: red"></span>
             </div>
@@ -128,7 +126,6 @@ $File = $res->FileUpload;
               <label for="mobileNumber">Mobile Number
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value="<?php  echo $mobilenumber; ?>"
                 placeholder="Enter your Mobile Number" />
               <span id="mobileNumberMessage" style="color: red"></span>
@@ -160,7 +157,6 @@ $File = $res->FileUpload;
               <label for="DOB">Date of Birth
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="Date" class="inputs" name="dob" id="dob" value="<?php  echo $dob; ?>" />
               <span id="DOBMessage" style="color: red"></span>
             </div>
@@ -173,7 +169,6 @@ $File = $res->FileUpload;
                 <!--Course -->
 
                   
-                    <i class="fas fa-user"></i>
                    
                     <section class="courses-section">
                         <div class="row">
@@ -213,7 +208,6 @@ $File = $res->FileUpload;
               <label for="Address">Address
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4" value="<?php  echo $address; ?>"></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
@@ -224,7 +218,6 @@ $File = $res->FileUpload;
               <label for="email">E-mail
                 <hr />
               </label>
-              <i class="far fa-envelope"></i>
 
               <input type="text" class="inputs" name="email" id="E_mail" value="<?php  echo $email; ?>" placeholder="abc@gmail.com" />
               <span id="EmailMessage" style="color: red"></span>
@@ -234,7 +227,6 @@ $File = $res->FileUpload;
               <label for="file">File Upload
                 <hr />
               </label>
-              <i class="fas fa-lock"></i>
 
               <input type="file" class="inputs" name="file" id="file" value="" <?php echo $File; ?> />
               <span id="fileMessage" style="color: red"></span>

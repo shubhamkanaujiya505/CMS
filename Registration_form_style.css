@@ -37,11 +37,11 @@ p {
   color: #606459;
   margin-left: 45px;
 }
-  /* label {
+  label {
     margin-bottom: 0.5rem;
     font-size: large;
     display: inline-block;
-  } */
+  }
  
   .header{
     align-items: right;
@@ -79,10 +79,10 @@ element.style {
     font-size: small;
     box-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
   }
-  form div {
+  /* form div {
     position: relative;
     margin-bottom: 1rem;
-  }
+  } */
   .gj-textbox-md {
     padding: 6px 0;
     margin: -1px;

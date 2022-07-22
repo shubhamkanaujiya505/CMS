@@ -158,7 +158,6 @@ session_start();
      $fileextstored = array('png', 'jpg', 'pdf', 'jpeg', 'xlsx');
 
     //  echo ("hello");
-    // var_dump(in_array($filecheck, $fileextstored));
      if(in_array($filecheck,$fileextstored)){
 
          //create destination folder
@@ -192,8 +191,7 @@ session_start();
             <td><?php  echo $res['Mobile_Number']; ?></td>
             <!-- take condition for display male or female -->
             <td><?php  
-            //echo $res['Gender'];
-            //var_dump($res['Gender'] == 'Male');
+
             if($res['Gender'] == 'Male'){
                 echo "Male";
             } else{
@@ -201,9 +199,9 @@ session_start();
             }
             ?></td>
             <td><?php  echo $res['Date_Of_Birth']; ?></td>
-
-            <!-- $query = select st.Student Name, st.Father Name, st.Mobile Number, st.Gender, st.Date Of Birth, st.Country, st.State, st.City, st.Address, st.Email, st.FileUpload, C.name as Country,S.name as State ,Ci.name as City from StudentForm INNER JOIN tbl_countries C ON C.id = country INNER JOIN tbl_states S ON S.id = State inner join tbl_cities Ci on Ci.id=city; -->
-
+            <?php
+            // $query =  mysqli_query($con,"select st.Student_Name, st.Father_Name, st.Mobile_Number, st.Gender, st.Date_Of_Birth, st.Country, st.State, st.city, st.Address, st.Email, st.FileUpload, C.name as Country,S.name as State ,Ci.name as City from Student as st StudentForm INNER JOIN tbl_countries C ON C.id = country INNER JOIN tbl_states S ON S.id = State inner join tbl_cities Ci on Ci.id=city;")
+            // ?>
             <!-- get data from db to display page  -->
             <!-- <td>  -->
               <?php// $cid  = $res['Country'];
@@ -223,7 +221,7 @@ session_start();
             <td><?php  $sid = $res['State'];
             $statequery = mysqli_query($con,"select id,name from tbl_states where id = $sid limit 1");
             $statedata = mysqli_fetch_assoc($statequery);
-            if($sid ==$statedata['id']){
+            if($sid == $statedata['id']){
                 echo $statedata['name'];
             } ?></td>
             <td><?php  $ciid = $res['city'];
@@ -256,78 +254,6 @@ session_start();
         </div>
     </div>
    <script> 
-
-//    sweet alert for delete confirmation 
-//    function deletevalidity(){
-//     swal({
-//         title: "Are you sure?",
-//         text: "Once deleted, you will not be able to recover this file!",
-//         icon: "warning",
-//         buttons: true,
-//         dangerMode: true,
-//         })
-//         .then((willDelete) => {
-//         if (willDelete) {
-//             console.log('yes');
-//         } else {
-//             console.log('cancel');
-//         }
-//         });
-//      }
-   
- 
-            //         // settings
-            //     iziToast.settings({
-            //     timeout: 300000, // default timeout
-            //     resetOnHover: true,
-            //     // icon: '', // icon class
-            //     transitionIn: 'flipInX',
-            //     transitionOut: 'flipOutX',
-            //     position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-            //     onOpen: function () {
-            //         console.log('callback abriu!');
-            //     },
-            //     onClose: function () {
-            //         console.log("callback fechou!");
-            //     }
-            //     });
-
-            //     // custom toast
-            //     $('#customClick').click(function () {
-
-            //     iziToast.show({
-            //         color: 'red',
-            //         icon: 'fa fa-user',
-            //         title: 'Hey',
-            //         message: 'Are you sure you want to Delete!',
-            //         position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
-            //         progressBarColor: 'rgb(0, 255, 184)',
-            //         buttons: [
-            //         [
-            //             '<button>Ok</button>',
-            //             function (instance, toast) {
-            //                echo ($deletes);
-            //             }
-            //         ],
-            //         [
-            //             '<button>Close</button>',
-            //             function (instance, toast) {
-            //             instance.hide({
-            //                 transitionOut: 'fadeOutUp'
-            //             }, toast);
-            //             }
-            //         ]
-            //         ]
-            //     });
-
-            //     }); // ! .click()
-
-            // $('#any').click(function(){
-            // iziToast.error({
-            //     title: 'Error',
-            //     message: 'iziToast.error()'
-            // });
-            // }); -->
 
 </script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

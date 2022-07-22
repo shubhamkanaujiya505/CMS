@@ -107,53 +107,35 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
   // echo (alert(""));
   echo '<script>alert("Email id already exist")</script>';
 }else{
-// echo ("hello ");
-$v = '"' . implode('", "', $value) . '"';
+
+    $v = '"' . implode('", "', $value) . '"';
     // insert data in db table
     $q = "INSERT INTO StudentForm (Student_Name,Father_Name,Mobile_Number,Gender,Date_Of_Birth,Country,State,city,Address,Email,Password,FileUpload) values(".$v.")";
-//    echo $q;
-//$name,$fathername,$mobilenumber,$gender,$dob,$state,$Address,$email,$Password,$File
-$query = mysqli_query($con,$q) or die(mysqli_error($con));
-//   die;
-//  echo '<script>alert("User register successfully")</script>';   
-}}
-?>
-  <!-- add show details button  -->
-  <!-- <div class="row" id="table">
-    <div class="col-md-9" style="margin:0.2rem;"></div>
-            <div class="col-md-2"> -->
-              <!-- add new record button -->
-              <!-- <button type="button" id="addNewRecord"  style="float:right;margin:1rem" value="Show Records" class="btn btn-small btn-success" style="width: 0px;" ><a href="Display.php" class="text-white">show Records</a></button>
-        </div>
-        <div>
-          <button type="button" id="addNewRecords"  style="float:right;margin:2rem" value="Show Records" class="btn btn-small btn-success" ><a href="login.php" class="text-white">Existing User Login</a></button>
-        </div>
-      </div> -->
-    <!-- <div id="header">
-      <button type="button" class="btn btn-success"><a href="Display.php" class="text-black">show Records</a></button>
-      <button type="button" class="btn btn-success"><a href="login.php" class="text-black">Existing User Login</a></button>
-    </div> -->
     
+    $query = mysqli_query($con,$q) or die(mysqli_error($con));
+
+}}
+?>  
         <!-- Navigation bar  -->
         <!-- <div> -->
-<nav id="navigation" class="navbar navbar-expand-sm navbar-green bg-green">
-  <div class="container-fluid">
-    <a class="navbar-brand" style="font-size: 30px; font-family: 'Edu TAS Beginner', cursive; color: lightskyblue"><b>Avalon Aurora High School</b></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
-        
-        
-     </ul>
-      <!-- <div style="display:inline-flex; text-align:right;"> -->
-        <button class="btn btn-blue " style="border-radius:8px;font-size:large;  margin-right:4px;" type="button" > <a href="login.php" style="color: white; "><b>User Login</b></a></button>
-        <button class="btn btn-blue " style="border-radius:8px;font-size:large; "> <a href="Display.php" type="button" style="color: white;"><b>View Records</b></a></button>
-      <!-- </div>  -->
-    </div> 
-  </div>
- </nav>
+        <nav id="navigation" class="navbar navbar-expand-sm navbar-green bg-green">
+          <div class="container-fluid">
+            <a class="navbar-brand" style="font-size: 30px; font-family: 'Edu TAS Beginner', cursive; color: lightskyblue"><b>Avalon Aurora High School</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+              <ul class="navbar-nav me-auto">
+                
+                
+            </ul>
+              <!-- <div style="display:inline-flex; text-align:right;"> -->
+                <button class="btn btn-blue " style="border-radius:8px;font-size:large;  margin-right:4px;" type="button" > <a href="login.php" style="color: white; "><b>User Login</b></a></button>
+                <button class="btn btn-blue " style="border-radius:8px;font-size:large; "> <a href="Display.php" type="button" style="color: white;"><b>View Records</b></a></button>
+              <!-- </div>  -->
+            </div> 
+          </div>
+        </nav>
  <!-- </div>  -->
  
  <!-- Navigation bar end  -->
@@ -205,10 +187,18 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/css/intlTelInput.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/intlTelInput.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"></script>
+    <script src=""></script>
     <!-- end country code  -->
 
 
@@ -287,7 +277,8 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
             <div>
               <!-- <input type="text" id="mobile_code" class="form-control" placeholder="Phone Number" name="name"> -->
               <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value=""
-                placeholder="Phone Number"  />
+                  />
+                  <!-- placeholder="Phone Number" -->
                 <span id="mobileNumberMessage" style="color: red"></span>
               </div>
               </div> 
@@ -309,26 +300,23 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
             <div class="row">
                 <!--Course -->
 
-                  
-                   
                     <section class="courses-section">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="country">Country</label>
+                                <label for="country">Country<hr></label>
                                 <select type="text" name="country" id="country" class="form-control">
-                                  <span id="countryMessage" style="color: red"></span>
-                                    <option value="">Select Country</option>
+                                <span id="countryMessage" style="color: red"></span>
                                 </select>
                             </div>
 
                             <div class="col-md-4">
-                                <label for="state">State</label>
+                                <label for="state">State<hr></label>
                                 <select type="text" id="state" name="state" class="form-control"></select>
                                 <span id="stateMessage" style="color: red"></span>
                             </div>
 
                          <div class="col-md-4">
-                                <label for="city">City</label>
+                                <label for="city">City<hr></label>
                                 <select name="city" id="city" class="form-control"></select>
                                 <span id="cityMessage" style="color: red"></span>
                             </div>
@@ -355,7 +343,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <label for="email">E-mail
                 <hr />
               </label>
-              <i class="far fa-envelope"></i>
 
               <input type="text" class="inputs" name="email" id="E_mail" value="" placeholder="abc@gmail.com" />
               <span id="EmailMessage" style="color: red"></span>
@@ -365,7 +352,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <label for="password">Password
                 <hr />
               </label>
-              <i class="fas fa-lock"></i>
               <input type="password" class="inputs" name="password" id="Password" value=""
                 placeholder="Enter your Password here" />
               <span id="PasswordMessage" style="color: red"></span>
@@ -376,8 +362,7 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <label for="Re-password">Re-password
                 <hr />
               </label>
-              <i class="fas fa-lock"></i>
-
+              fas fa-lock
               <input type="password" class="inputs" name="re-password" id="Re-password" value=""
                 placeholder="Enter your Re-Password here" />
               <span id="re_PasswordMessage" style="color: red"></span>
@@ -388,7 +373,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
               <label for="file">File Upload
                 <hr />
               </label>
-              <i class="fas fa-lock"></i>
 
               <input type="file" class="inputs" name="file" id="file" value="" />
               <span id="fileMessage" style="color: red"></span>
@@ -418,6 +402,6 @@ $query = mysqli_query($con,$q) or die(mysqli_error($con));
 </div>
       <!-- JavaScript page link -->
 
-      <script src="Registration_form_script.js"></script>
+<script src="Registration_form_script.js"></script>
 </body>
 </html>

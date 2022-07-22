@@ -85,8 +85,8 @@
             <div>
               
             <!-- Submit button -->
-            <div>
-            <button type="submit" name="submit"  value="submit" style=""><b>Submit</b></a></button>
+            <div >
+            <button type="submit" name="submit"  value="submit" style="width: 100%;"><b>Send mail</b></a></button>
             </div>
           </form>
     </table>

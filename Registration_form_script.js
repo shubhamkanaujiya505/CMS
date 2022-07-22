@@ -22,7 +22,7 @@ function validation() {
       var Password = document.getElementById('Password').value;
       var address = /^[#.0-9a-zA-Z\s,-]+$/;  // add regexp for address file
       var RePassword = document.getElementById('Re-password').value;
-    var Checkbox = document.getElementById('Checkbox').value;
+      var Checkbox = document.getElementById('Checkbox').value;
   
     var success = true;  //if no error its returns true else false 
   
@@ -266,11 +266,6 @@ function validlogin(){
   }
   return success;
 }
-
-
-
-
-
 
 // function for country state and city 
 
