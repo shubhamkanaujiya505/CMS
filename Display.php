@@ -132,9 +132,11 @@ session_start();
 
 
     // Taking all values from the form data(input)
-    // $folder = "uploadfiles/";
+    $folder = "/uploadfiles";
+
      // we have file type method
-     $files = $_FILES['file'];   
+     var_dump($_FILES['file']); 
+       
      // access the filename
      $filename = $files['name'];
      
@@ -158,11 +160,12 @@ session_start();
      $fileextstored = array('png', 'jpg', 'pdf', 'jpeg', 'xlsx');
 
     //  echo ("hello");
-     if(in_array($filecheck,$fileextstored)){
-
+    echo ("hello");
+    if(in_array($filecheck,$fileextstored)){
+      
          //create destination folder
          // $destinationfile =getcwd().'/uploadfiles/'.$newFile;
-         $destinationfile ='uploadfiles/'.$filename;
+         $destinationfile ='./uploadfiles/'.$filename;
          // echo $destinationfile;
          // var_dump(move_uploaded_file($_FILES['file']['tmp_name'],$destinationfile));  
          move_uploaded_file($filetmp,$destinationfile);   
@@ -199,40 +202,37 @@ session_start();
             }
             ?></td>
             <td><?php  echo $res['Date_Of_Birth']; ?></td>
-            <?php
-            // $query =  mysqli_query($con,"select st.Student_Name, st.Father_Name, st.Mobile_Number, st.Gender, st.Date_Of_Birth, st.Country, st.State, st.city, st.Address, st.Email, st.FileUpload, C.name as Country,S.name as State ,Ci.name as City from Student as st StudentForm INNER JOIN tbl_countries C ON C.id = country INNER JOIN tbl_states S ON S.id = State inner join tbl_cities Ci on Ci.id=city;")
-            // ?>
+          
             <!-- get data from db to display page  -->
-            <!-- <td>  -->
-              <?php// $cid  = $res['Country'];
-            //  $Conquery = mysqli_query($con,"select id,name from tbl_countries where id=$cid limit 1");
-            //  $cdata = mysqli_fetch_assoc($Conquery);
-                // if($cid==$cdata['id']){ echo $cdata['name'];}else{ echo "-";
-                //}  ?> 
-                   <!-- </td> -->
+            <td> 
+              <?php $cid  = $res['Country'];
+             $Conquery = mysqli_query($con,"select id,name from tbl_countries where id=$cid limit 1");
+             $cdata = mysqli_fetch_assoc($Conquery);
+                if($cid==$cdata['id']){ echo $cdata['name'];}else{ echo "-";
+                }  ?>  
+              </td> 
 
-                  <!-- test start -->
-            <td><?php $cid  = $res['Country'];
-             $Conquery = mysqli_query($con,"select C.name as Country from StudentForm inner join tbl_countries c on C.id = Country");
-                if($cid==$Conquery['id']){ echo $Conquery['name'];}else{ echo "-";
-                }  ?></td>
-                  <!-- test end  -->
-
-            <td><?php  $sid = $res['State'];
+            <td>
+              <?php  $sid = $res['State'];
             $statequery = mysqli_query($con,"select id,name from tbl_states where id = $sid limit 1");
             $statedata = mysqli_fetch_assoc($statequery);
             if($sid == $statedata['id']){
                 echo $statedata['name'];
-            } ?></td>
-            <td><?php  $ciid = $res['city'];
+            } ?>
+            </td>
+
+            <td>
+              <?php  $ciid = $res['city'];
             $cityquery = mysqli_query($con,"select id,name from tbl_cities where id = $ciid limit 1"); 
             $citydata = mysqli_fetch_assoc($cityquery);
             if($ciid == $citydata['id']){
                 echo $citydata['name'];
-              }  ?></td>
+              }  ?>
+             </td>
+
             <td><?php  echo $res['Address']; ?></td>
             <td><?php  echo $res['Email']; ?></td>
-            <!-- <td><?php  echo $res['Password']; ?></td> -->
+            <!-- <td><?php // echo $res['Password']; ?></td> -->
             <!-- <td><?php  //echo $res['FileUpload']; ?></td> -->
             <!-- add file path for show image  -->
             

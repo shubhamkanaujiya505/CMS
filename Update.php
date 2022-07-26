@@ -30,6 +30,7 @@ $Ci_ty = $res->city;
 $address = $res->Address;
 $email = $res->Email;
 $File = $res->FileUpload;
+
 // echo "<pre>";print_r($res);exit;
 // when clicked on submit button data is save
 // if(isset($_POST['submit'])){
@@ -86,6 +87,20 @@ $File = $res->FileUpload;
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>Resistration form</title>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/css/intlTelInput.css" rel="stylesheet" />
+  <!-- <script src="https://code.jquery.com/jquery-1.11.1.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/intlTelInput.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"></script>
 </head>
 
 <body style="background-color: skyblue;">
@@ -93,7 +108,7 @@ $File = $res->FileUpload;
   <div class="container">
     <!-- Calling function form js using validation function-->
         <div class="panel panel-default" id="form" >
-          <form method="post" name="registration" onsubmit="return validation()"> 
+          <form method="post" name="registration" onsubmit="return validation()" enctype="multipart/form-data"> 
             <div class="title">
               <h1>
                 Update Operation Form
@@ -123,7 +138,7 @@ $File = $res->FileUpload;
 
             <div>
               <!-- Mobile number -->
-              <label for="mobileNumber">Mobile Number
+              <label for="mobileNumber" style="display: block;">Mobile Number
                 <hr />
               </label>
               <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value="<?php  echo $mobilenumber; ?>"
@@ -208,7 +223,7 @@ $File = $res->FileUpload;
               <label for="Address">Address
                 <hr />
               </label>
-              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4" value="<?php  echo $address; ?>"></textarea>
+              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4"><?php  echo $address; ?></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
 
@@ -228,7 +243,7 @@ $File = $res->FileUpload;
                 <hr />
               </label>
 
-              <input type="file" class="inputs" name="file" id="file" value="" <?php echo $File; ?> />
+              <input type="file" class="inputs" name="file" id="file" <?php echo $File; ?> />
               <span id="fileMessage" style="color: red"></span>
             </div>
             <!-- Submit button -->
@@ -242,6 +257,6 @@ $File = $res->FileUpload;
 
 </div>
       <!-- JavaScript page link -->
-  <!-- <script src="Registration_form_script.js"></script> -->
+    <script src="Registration_form_script.js"></script>
 </body>
 </html>

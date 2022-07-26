@@ -112,9 +112,9 @@ element.style {
   }
   label {
     display: inline-block;
-    color: white;
+    color: rgb(7, 7, 7);
     font-size: x-large;
-    font-weight: lighter;
+    font-weight: 300;
 }
   
   .error {

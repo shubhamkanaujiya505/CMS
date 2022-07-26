@@ -213,7 +213,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
   <div class="container">
     <!-- Calling function form js using validation function-->
     <div class="panel panel-default" id="form" >
-      <form method="post" name="registration" onsubmit="return validation()"> 
+      <form method="post" name="registration" onsubmit="return validation()" enctype="multipart/form-data"> 
 
 
          <div class="title">

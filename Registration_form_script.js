@@ -280,30 +280,64 @@ $(document).ready(function() {
 
 });
 // define function for country 
-function loadCountry(){
+function loadCountry($id = ''){
+  $cid = $id;
+  $json = JSON.stringify({ get:'country',cid:$cid});
   $.ajax({
     type: "POST",
     url : "ajax.php",
-    data: "get=country"
+    async: false,
+    data: $json,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'text/plain'
+     },
+    dataType: "json",
   }).done(function(result){
-    
-    $(result).each(function(){
-      $("#country").append($(result));
+   var resut = JSON.parse(JSON.stringify(result));
+  // console.log(resut['country']);
+    $(resut['country']).each(function(res,v){
+    //  console.log(v);
+      $("#country").append(v);
     })
   });
 }
-function loadState(countryId){
-  $("#state")
-  $.ajax  ({
-    type:"POST",
-    url: "ajax.php",
-    data: "get=state&countryId=" + countryId
-  }).done(function(result) {
-    // console.log(result); 
-    $("#state").append($(result));
-
+function loadState($id = ''){
+  $sid = $id;
+  $json = JSON.stringify({ get:'state',countryId:$sid});
+  $.ajax({
+    type: "POST",
+    url : "ajax.php",
+    async: false,
+    data: $json,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'text/plain'
+     },
+    dataType: "json",
+  }).done(function(result){
+   var resut = JSON.parse(JSON.stringify(result));
+  // console.log(resut['country']);
+    $(resut['state']).each(function(res,v){
+    //  console.log(v);
+      $("#state").append(v);
+    })
   });
 }
+
+ 
+// function loadState(countryId){
+//   $("#state")
+//   $.ajax  ({
+//     type:"POST",
+//     url: "ajax.php",
+//     data: "get=state&countryId=" + countryId
+//   }).done(function(result) {
+//     // console.log(result); 
+//     $("#state").append($(result));
+
+//   });
+// }
 function loadCity(stateId) {
   $("#city")
   $.ajax({
@@ -319,7 +353,10 @@ function loadCity(stateId) {
   });
 }
 // init the countries
+$cid = '<?php echo $Co_untry ?>';
+$sid = '<?php echo $St_ate ?>';
 loadCountry();
+//loadState();
 //validation();
 // $("input").intlTelInput({
 //   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/js/utils.js"
