@@ -10,6 +10,7 @@ $data = json_decode(file_get_contents('php://input'));
 $command = isset($data->get) ? $data->get : "";
 $cid = isset($data->cid) ? $data->cid : "";
 $countryId = isset($data->countryId) ? $data->countryId : "";
+$stateId = isset($data->stateId) ? $data->stateId : "";
 switch ($command) {
     case 'country':
         $statement = "SELECT id, name from tbl_countries";
@@ -46,11 +47,13 @@ switch ($command) {
         $result1 = "<option>Select City</option>";
         $statement = "SELECT id, name FROM tbl_cities WHERE state_id=" . $stateId;
         $dt = mysqli_query($con, $statement);
-
-        while ($result = mysqli_fetch_array($dt)) {
-            $result1 .= "<option value=" . $result['id'] . ">" . $result['name'] . "</option>";
+        $arr2 = [];
+        while ($result2 = mysqli_fetch_array($dt)) {
+            $result2 = "<option value=" . $result2['id'] . ">" . $result2['name'] . "</option>";
+            array_push($arr2,$result2);
         }
-        echo $result1;
+        $s = ['city'=>$arr2];
+        echo json_encode($s);
         break;
     
 }

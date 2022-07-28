@@ -18,7 +18,7 @@ $Update = $_GET['Updates'];
 $query = "SELECT * FROM StudentForm where SrNo = '$Update'"; 
 $data = mysqli_query($con, $query); 
 $res = mysqli_fetch_object($data);
-// print_r($res);
+
 $name = $res->Student_Name;
 $fathername = $res->Father_Name;
 $mobilenumber = $res->Mobile_Number;
@@ -30,6 +30,13 @@ $Ci_ty = $res->city;
 $address = $res->Address;
 $email = $res->Email;
 $File = $res->FileUpload;
+
+$countryQuery = "SELECT id,name FROM tbl_countries";
+$data1 = mysqli_query($con, $countryQuery); 
+
+$stateQuery = "SELECT country_id,name FROM tbl_states";
+$data2 = mysqli_query($con, $stateQuery); 
+
 
 // echo "<pre>";print_r($res);exit;
 // when clicked on submit button data is save
@@ -141,7 +148,7 @@ $File = $res->FileUpload;
               <label for="mobileNumber" style="display: block;">Mobile Number
                 <hr />
               </label>
-              <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value="<?php  echo $mobilenumber; ?>"
+              <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="13" value="<?php  echo $mobilenumber; ?>"
                 placeholder="Enter your Mobile Number" />
               <span id="mobileNumberMessage" style="color: red"></span>
             </div>
@@ -189,23 +196,30 @@ $File = $res->FileUpload;
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="country">Country</label>
-                                <select type="text" name="country" id="country" value="<?php  echo $Co_untry; ?>" class="form-control">
+                                <select type="text" name="country" id="country" class="form-control">
                                   <span id="selectcountryMessage" style="color: red"></span>
-                                    <option>Select Country</option>
+                                  <?php while($res1 = mysqli_fetch_object($data1)){?>
+                                    <option value="<?php  echo $Co_untry; ?>"<?php if($res1->country_id==$Co_untry){ echo 'selected';}?>><?php  echo $res1->name; ?></option>
+                                    <?php 
+                                  } ?>
                                 </select>
                             </div>
 
                             <div class="col-md-4">
-                                <label for="state">State</label>
-                                <select type="text" id="state" value="<?php  echo $St_ate; ?>" name="state" class="form-control"></select>
-                                <span id="selectstateMessage" style="color: red"></span>
+                                <label for="state">State</label>  <span id="selectstateMessage" style="color: red"></span>
+                                <select type="text" id="state"<?php  echo $St_ate; ?> name="state" class="form-control">
+                              
+                                <?php while($res2 = mysqli_fetch_object($data2)){?>
+                                    <option value="<?php  echo $St_ate; ?>"<?php if($res2->id==$St_ate){ echo 'selected';}?>><?php  echo $res2->name; ?></option>
+                                    <?php 
+                                  } ?></select>
                             </div>
 
 
 
                             <div class="col-md-4">
                                 <label for="city">City</label>
-                                <select name="city" id="city" value="<?php  echo $Ci_ty; ?>" class="form-control"></select>
+                                <select name="city" id="city"<?php  echo $Ci_ty; ?> class="form-control"></select>
                                 <span id="selectcityMessage" style="color: red"></span>
                             </div>
 

@@ -277,6 +277,7 @@ $(document).ready(function() {
       $('#state').change(function() {
           loadCity($(this).find(':selected').val())
       })
+      
 
 });
 // define function for country 
@@ -321,6 +322,7 @@ function loadState($id = ''){
     $(resut['state']).each(function(res,v){
     //  console.log(v);
       $("#state").append(v);
+     
     })
   });
 }
@@ -338,24 +340,51 @@ function loadState($id = ''){
 
 //   });
 // }
-function loadCity(stateId) {
-  $("#city")
+// console.log($id = '');
+function loadCity($id = ''){
+  $ciid = $id;
+  $json = JSON.stringify({ get:'city',stateId:$ciid});
   $.ajax({
-      type: "POST",
-      url: "ajax.php",
-      data: "get=city&stateId=" + stateId
-  }).done(function(result) {
+    type: "POST",
+    url : "ajax.php",
+    async: false,
+    data: $json,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'text/plain'
+     },
+    dataType: "json",
+  }).done(function(result){
+   var resut = JSON.parse(JSON.stringify(result));
+  // console.log(resut['country']);
+    $(resut['city']).each(function(res,v){
+    //  console.log(v);
+      $("#city").append(v);
+    })
+  });
+}
+
+
+// function loadCity(stateId) {
+//   $("#city")
+//   $.ajax({
+//       type: "POST",
+//       url: "ajax.php",
+//       data: "get=city&stateId=" + stateId
+//   }).done(function(result) {
     
 
 
-      $("#city").append($(result));
+//       $("#city").append($(result));
 
-  });
-}
+//   });
+// }
 // init the countries
 $cid = '<?php echo $Co_untry ?>';
 $sid = '<?php echo $St_ate ?>';
+$ciid = '<?php echo $Ci_ty ?>';
 loadCountry();
+loadState();
 //loadState();
 //validation();
 // $("input").intlTelInput({

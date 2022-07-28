@@ -135,7 +135,7 @@ session_start();
     $folder = "/uploadfiles";
 
      // we have file type method
-     var_dump($_FILES['file']); 
+     $files = ($_FILES['file']); 
        
      // access the filename
      $filename = $files['name'];
@@ -160,7 +160,6 @@ session_start();
      $fileextstored = array('png', 'jpg', 'pdf', 'jpeg', 'xlsx');
 
     //  echo ("hello");
-    echo ("hello");
     if(in_array($filecheck,$fileextstored)){
       
          //create destination folder
