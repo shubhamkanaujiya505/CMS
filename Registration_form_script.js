@@ -1,8 +1,17 @@
+// window.onload = function(){
+//   document.registration.onsubmit = function() {
+//     return validation();
+//   }
+// }
+// function nameValidate(){
+//   // alert("first name validate");
+// }
+
 function validation() {
+
   
-    var correct_way = /^[A-Za-z ]+$/ ;  // add regexp for validate name
-    var expr =
-      /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/ ;  // add regexp for validate email
+    var correct_way = /^[A-Za-z ]+$/;  // add regexp for validate name
+    var expr =/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/ ;  // add regexp for validate email
     
       // createing a variable for every input field
       var Name = document.getElementById('Name').value;
@@ -17,7 +26,7 @@ function validation() {
       var city = document.getElementById('city').value;
       var Address = document.getElementById('Address').value;
       var Email = document.getElementById('E_mail').value;
-      var filevalidation = /^.*\.(jpg|jpeg|png|gif|xlsx)$/;// add regexp for validate file
+      var filevalidation = /^.*\.(jpg|jpeg|png|gif)$/;// add regexp for validate file
       var file = document.getElementById('file').value;
       var Password = document.getElementById('Password').value;
       var address = /^[#.0-9a-zA-Z\s,-]+$/;  // add regexp for address file
@@ -33,7 +42,7 @@ function validation() {
     document.getElementById('maleMessage').innerHTML = '';
     document.getElementById('femaleMessage').innerHTML = '';
     document.getElementById('DOBMessage').innerHTML = '';
-    document.getElementById('countryMessage').innerHTML = '';
+    document.getElementById("countryMessage").innerHTML = "";
     document.getElementById('stateMessage').innerHTML = '';
     document.getElementById('cityMessage').innerHTML = '';
     document.getElementById('addressMessage').innerHTML = '';
@@ -46,46 +55,48 @@ function validation() {
   // create a validation logic for every input field
     // create  validation logic for name 
     if (Name=="") {
-      document.getElementById('nameMessage').innerHTML ='** please fill your Name';
+      document.getElementById('nameMessage').innerHTML ="** can't blank please fill your Name like `Subham kanaujiya`";
         document.getElementById("Name").focus();
       success = false;
     }
   
-    if (Name.length < 3) {
-      document.getElementById('nameMessage').innerHTML ='** Allow minimum three character';
+    if (Name.length < 3){
+      document.getElementById('nameMessage').innerHTML ='** Only allow minimum 3 character';
       success = false;
     }
-    if (Name.length > 30) {
-      document.getElementById('nameMessage').innerHTML ='** please fill correct length';
+    if (Name.length > 30){
+      document.getElementById('nameMessage').innerHTML ='** Only allow maximum 30 character';
       success = false;
     }
   
     // defining RegExp function
     if (Name.match(correct_way)) true;
-    else {
-      document.getElementById('nameMessage').innerHTML ='** Only alphabets are allowed';
+    else if(Name!=""){
+      document.getElementById('nameMessage').innerHTML ='** Only alphabets are allowed like "Shubham kanaujiya"';
       success = false;
     }
    
     // create a validation logic for Father Name
     if (FName == '') {
-      document.getElementById('fatherNameMessage').innerHTML ='** please fill your Father Name';
+      document.getElementById('fatherNameMessage').innerHTML ="** can't blank  please fill your Father Name like `Shubham kanaujiya`";
         // document.registration.name.focus();
         document.getElementById("F_Name").focus();
       success = false;
     }
-    if (FName.length < 3) {
-      document.getElementById('fatherNameMessage').innerHTML ='** please fill correct length';
+    if (FName.length < 3){}
+    else if(Name != "") {
+      document.getElementById('fatherNameMessage').innerHTML ='** Only allow minimum 3 character';
       success = false;
     }
-    if (FName.length > 30) {
-      document.getElementById('fatherNameMessage').innerHTML ='** please fill correct length';
+    if (FName.length > 30){}
+    else if(Name != "") {
+      document.getElementById('fatherNameMessage').innerHTML ='** Only allow maximum 30 character';
       success = false;
     }
     // defining RegExp function
     if (FName.match(correct_way)) true
-    else {
-      document.getElementById('fatherNameMessage').innerHTML ='** Only alphabets are allowed';
+    else if(Name != ""){
+      document.getElementById('fatherNameMessage').innerHTML ='**  Only alphabets are allowed like "Shubham kanaujiya" ';
       success = false;
     }
   
@@ -222,32 +233,34 @@ function validation() {
         document.getElementById("Checkbox").focus();
       success = false;
     }
-  
+    
+    
     return success; 
   }
-    //   // settings
-    // iziToast.settings({
-    //   timeout: 3000, // default timeout
-    //   resetOnHover: true,
-    //   // icon: '', // icon class
-    //   transitionIn: 'flipInX',
-    //   transitionOut: 'flipOutX',
-    //   position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-    //   onOpen: function () {
-    //     console.log('callback abriu!');
-    //   },
-    //   onClose: function () {
-    //     console.log("callback fechou!");
-    //   }
-    // });
+      // settings
+    iziToast.settings({
+      timeout: 1000, // default timeout
+      resetOnHover: true,
+      // icon: '', // icon class
+      transitionIn: 'flipInX',
+      transitionOut: 'flipOutX',
+      position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+      onOpen: function () {
+        console.log('callback abriu!');
+      },
+      onClose: function () {
+        console.log("callback fechou!");
+      }
+    });
 
-    // // success
-    // $('#successClick').click(function () {
-    //   iziToast.success({timeout: 5000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
-    // }); 
+    // success
+    $('#successClick').click(function () {
+      iziToast.warning({timeout: 1000, icon: 'fa fa-chrome', title: 'OK', message: 'Not Register'});
+    }); 
 
-// validation for login Username and password 
-function validlogin(){
+  // validation for login Username and password 
+
+  function validlogin(){
   var USERNAME = document.getElementById('userName').value;
   var PASSWORD = document.getElementById('secure').value;
   
@@ -264,6 +277,11 @@ function validlogin(){
     document.getElementById('PASSWORDfailMessage').innerHTML = '** please must fill your Password';
     success = false;
   }
+  
+  
+  // if(success !== true){
+  //   alert("The form was submitted");
+  // }
   return success;
 }
 

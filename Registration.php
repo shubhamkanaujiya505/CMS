@@ -15,16 +15,21 @@ if(isset($_POST) & !empty($_POST)){
 
 //1. create CSRF Token
 $cipher = "aes-256-cbc";
+
 //Generate a 256-bit encryption key
 $encryption_key = openssl_random_pseudo_bytes(32);
+
 // Generate an initialization vector
 $iv_size = openssl_cipher_iv_length($cipher);
 $iv = openssl_random_pseudo_bytes($iv_size);
+
 //Data to encrypt
 $data = uniqid(rand(),true);
 $Token = openssl_encrypt($data, $cipher, $encryption_key, 0, $iv);
+
 // assign it to session 
 $_SESSION['csrf_token'] = $Token;
+
 // print_r($_SESSION);
 
 //2. Adding CSRF token to form
@@ -105,7 +110,7 @@ $decrypted_data = openssl_decrypt($value['Password'] , $cipher, $encryption_key,
 if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$value['email']}'"))>0){
   
   // echo (alert(""));
-  echo '<script>alert("Email id already exist")</script>';
+  // echo '<script>alert("Email id already exist")</script>';
 }else{
 
     $v = '"' . implode('", "', $value) . '"';
@@ -158,13 +163,13 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   
   <!-- add iziToast css -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
   <link rel="stylesheet" href="https://unpkg.com/izitoast/dist/css/iziToast.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <!-- end iziToast css -->
   <!-- add iziToast js -->
-    <!-- <script src="https://unpkg.com/izitoast/dist/js/iziToast.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+   <script src="https://unpkg.com/izitoast/dist/js/iziToast.min.js"></script>
+   <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <!-- end iziToast js -->
  <!-- for date  -->
@@ -203,6 +208,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
 
 
   <title>Resistration form</title>
+  <!-- <script src="Registration_form_script.js"></script>  -->
 </head>
 
 <body style="background-image: url('color.jpg'); background-size:cover;  /* Center and scale the image nicely */
@@ -213,7 +219,16 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
   <div class="container">
     <!-- Calling function form js using validation function-->
     <div class="panel panel-default" id="form" >
-      <form method="post" name="registration" onsubmit="return validation()" enctype="multipart/form-data"> 
+      <form method="post" name="registration" onsubmit="return validation()"> 
+        <!-- <?php
+        // if(){
+        //   echo "sucess";
+
+        // }else{
+
+        // }
+        ?> -->
+
 
 
          <div class="title">
@@ -229,9 +244,9 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <label for="name">Student Name
                 <hr />
               </label>
-              <input type="text" class="inputs" name="name" id="Name" value="<?php echo $name; ?>" placeholder="Enter your Name"  />
+              <input type="text" class="inputs" name="name" id="Name" value="<?php echo $name; ?>" placeholder="Enter your Name"   />
               <!-- Using style tag in span tag to give style in error message -->
-              <span id="nameMessage" style="color: white"></span>
+              <span id="nameMessage" style="color: red"></span>
             </div>
             
             <div>
@@ -305,8 +320,8 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
                             <div class="col-md-4">
                                 <label for="country">Country<hr></label>
                                 <select type="text" name="country" id="country" class="form-control">
-                                <span id="countryMessage" style="color: red"></span>
-                                </select>
+                                  </select>
+                                  <span id="countryMessage" style="color: red"></span>
                             </div>
 
                             <div class="col-md-4">
@@ -387,12 +402,12 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
             <input type="hidden" name="token" value="<?php echo $Token;?>">
             <!-- Submit button -->
             <div>
-            <button type="submit" name="submit"  value="submit" style="margin-top:50px; width: 50%; border-radius:35px; font-size:large;"><b>Submit</b></a></button>
+            <button type="submit" name="submit"  value="submit"  id="successClick" style="margin-top:50px; width: 50%; border-radius:35px; font-size:large;"><b>Submit</b></a></button>
             <!-- Reset button -->
             <button type="reset" value="Reset" style="width: 49%; border-radius:35px; font-size:large;"><b>Reset</b></button>
             </div>
 
-            <!-- id="successClick"  -->
+            <!-- <button>toast</button> -->
           </form>
 
     </table>
