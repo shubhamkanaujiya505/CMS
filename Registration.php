@@ -274,6 +274,47 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <span id="femaleMessage" style="color: red"></span>
             </div>
 
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+            <div>
+              Date of Birth
+              <label for="DOB">Date of Birth
+                <hr />
+              </label>
+              <input type="" class="inputs" name="dob" id="dob" value="" placeholder ="dd/mm/yyyy" />
+
+              <span id="DOBMessage" style="color: red"></span>
+            </div>
+             -->
+            
+            
+            
+            
+            
+            
+            
+            
+
+
+
+
+
+
+
+            
+            
+            
+            
             <div>
               <!-- Date of Birth -->
               <label for="DOB">Date of Birth

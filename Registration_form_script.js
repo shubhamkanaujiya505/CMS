@@ -34,8 +34,11 @@ function validation() {
       var Checkbox = document.getElementById('Checkbox').value;
   
     var success = true;  //if no error its returns true else false 
+
+    
   
     // Using for Remove the error message
+    document.getElementById('nameMessage').innerHTML = '';
     document.getElementById('nameMessage').innerHTML = '';
     document.getElementById('fatherNameMessage').innerHTML = '';
     document.getElementById('mobileNumberMessage').innerHTML = '';
@@ -51,6 +54,10 @@ function validation() {
     document.getElementById('PasswordMessage').innerHTML = '';
     document.getElementById('re_PasswordMessage').innerHTML = '';
     document.getElementById('checkMessage').innerHTML = '';
+
+
+
+    // var nameMessage,fatherNameMessage,mobileNumberMessage,maleMessage;
        
   // create a validation logic for every input field
 
@@ -60,8 +67,7 @@ function validation() {
       document.getElementById('nameMessage').innerHTML ="** can't blank please fill your Name like `Student Name`";
         document.getElementById("Name").focus();
       success = false;
-    }
-    else if (Name.length < 3){
+    }else if (Name.length < 3){
       document.getElementById('nameMessage').innerHTML ='** allow minimum 3 character';
       success = false;
     }
@@ -69,9 +75,10 @@ function validation() {
       document.getElementById('nameMessage').innerHTML ='** only allow maximum 30 character';
       success = false;
     }
-    // defining RegExp function
-    if (Name.match(correct_way)) true;
-    else if(Name !="")
+    
+    // defining RegExp functionx
+    else if (Name.match(correct_way)) true;
+      else (Name !="")
    {
       document.getElementById('nameMessage').innerHTML ='** Only alphabets are allowed like "Student Name"';
       success = false;
@@ -103,7 +110,7 @@ function validation() {
   
 
 
-    // create a validation logic for Mobile number
+   /////////////////////////// create a validation logic for Mobile number/////////////////////////
     if (MNumber == '') {
       document.getElementById('mobileNumberMessage').innerHTML ='** Please  Enter a mobile Number';
         document.getElementById("M_Number").focus();
@@ -126,11 +133,12 @@ function validation() {
     }
     
     if (
+        (MNumber.charAt(0) != 6) &&
         (MNumber.charAt(0) != 7) &&
         (MNumber.charAt(0) != 8) &&
         (MNumber.charAt(0) != 9)
         ) {
-            document.getElementById('mobileNumberMessage').innerHTML ='** mobile number must start with 7,8,9';
+            document.getElementById('mobileNumberMessage').innerHTML ='** mobile number must start with 6,7,8,9';
             success = false;
         }
         
@@ -154,6 +162,27 @@ function validation() {
         document.getElementById("dob").focus();
         success = false;
     }
+
+
+        // var dob = document.getElementById("dob");
+        // document.getElementById("DOBMessage");
+
+        // var threeYearsAgo = new Date();
+        // threeYearsAgo.setFullYear(threeYearsAgo.getFullYear() - 3);
+        // var eightyOneYearsAgo = new Date();
+        // eightyOneYearsAgo.setFullYear(eightyOneYearsAgo.getFullYear() - 81);
+
+        // // Function returns true when age is OK, false otherwise
+        // function check() {
+        //     var birthDate = new Date(dob.value.replace(/(..)\/(..)\/(....)/, "$3-$2-$1"));
+        //     return birthDate <= threeYearsAgo && birthDate > eightyOneYearsAgo;
+        // }
+        //     if (check()) {
+        //       document.getElementById('DOBMessage').innerHTML ='** "Your age is OK"';
+        //     } else {
+        //       document.getElementById('DOBMessage').innerHTML ='** please select any one';"Your age must be between 3 and 80";
+        //     }
+        
     
     // create a validation logic for Dropdown
     if (country == '') {
@@ -431,3 +460,69 @@ $("#M_Number").intlTelInput({
 	separateDialCode: true,
 	// utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js"
 });
+
+
+
+//////////// Here's a jQuery plugin handles enter key as a callback or as a tab key (with an optional callback)/////////////
+
+          // $(document).ready(function () {
+          //   $("#Name").onEnter("tab");
+          //   $("#F_Name").onEnter("tab");
+          //   // $("#Male").onEnter("tab");
+          //   // $("#Female").onEnter("tab");
+          //   $("#dob").onEnter("tab");
+          //   $("#M_Number").onEnter("tab");
+          //   $("#country").onEnter("tab");
+          //   $("#state").onEnter("tab");
+          //   $("#city").onEnter("tab");
+          //   $("#Address").onEnter("tab");
+          //   $("#E_mail").onEnter("tab");
+          //   $("#file").onEnter("tab");
+          //   $("#Password").onEnter("tab");
+          //   $("#Re-password").onEnter("tab");
+          //   $("#Checkbox").onEnter("tab");
+          // });
+
+          // if (window.jQuery) {
+          //   (function ($) {
+          //     $.fn.onEnter = function (opt1, opt2, opt3) {
+          //       return this.on("keyup", function (e) {
+          //         var me = $(this);
+          //         var code = e.keyCode ? e.keyCode : e.which;
+          //         if (code == 13) {
+          //           if (typeof opt1 == "function") {
+          //             opt1(me, opt2);
+          //             return true;
+          //           } else if (opt1 == "tab") {
+          //             var eles = $(document)
+          //               .find("input,select,textarea,button")
+          //               .filter(":visible:not(:disabled):not([readonly])");
+          //             var foundMe = false;
+          //             var next = null;
+          //             eles.each(function () {
+          //               if (!next) {
+          //                 if (foundMe) next = $(this);
+          //                 if (JSON.stringify($(this)) == JSON.stringify(me))
+          //                   foundMe = true;
+          //               }
+          //             });
+          //             next.focus();
+          //             if (typeof opt2 === "function") {
+          //               opt2(me, opt3);
+          //             }
+          //             return true;
+          //           }
+          //         }
+          //       }).on("keydown", function (e) {
+          //         var code = e.keyCode ? e.keyCode : e.which;
+          //         if (code == 13) {
+          //           e.preventDefault();
+          //           e.stopPropagation();
+          //           return false;
+          //         }
+          //       });
+          //     };
+          //   })(jQuery);
+          // } else {
+          //   console.log("onEnter.js: This class requies jQuery > v3!");
+          // }
