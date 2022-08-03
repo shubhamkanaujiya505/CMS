@@ -53,53 +53,56 @@ function validation() {
     document.getElementById('checkMessage').innerHTML = '';
        
   // create a validation logic for every input field
-    // create  validation logic for name 
-    if (Name=="") {
-      document.getElementById('nameMessage').innerHTML ="** can't blank please fill your Name like `Subham kanaujiya`";
+
+    /////////////////////// create  validation logic for name /////////////////////////
+
+    if (Name==""|| Name == null) {
+      document.getElementById('nameMessage').innerHTML ="** can't blank please fill your Name like `Student Name`";
         document.getElementById("Name").focus();
       success = false;
     }
-  
-    if (Name.length < 3){
-      document.getElementById('nameMessage').innerHTML ='** Only allow minimum 3 character';
+    else if (Name.length < 3){
+      document.getElementById('nameMessage').innerHTML ='** allow minimum 3 character';
       success = false;
     }
-    if (Name.length > 30){
-      document.getElementById('nameMessage').innerHTML ='** Only allow maximum 30 character';
+    else if (Name.length > 30){
+      document.getElementById('nameMessage').innerHTML ='** only allow maximum 30 character';
       success = false;
     }
-  
     // defining RegExp function
     if (Name.match(correct_way)) true;
-    else if(Name!=""){
-      document.getElementById('nameMessage').innerHTML ='** Only alphabets are allowed like "Shubham kanaujiya"';
+    else if(Name !="")
+   {
+      document.getElementById('nameMessage').innerHTML ='** Only alphabets are allowed like "Student Name"';
       success = false;
     }
-   
-    // create a validation logic for Father Name
+
+/////////////////////// create a validation logic for Father Name /////////////////////////////
+
     if (FName == '') {
-      document.getElementById('fatherNameMessage').innerHTML ="** can't blank  please fill your Father Name like `Shubham kanaujiya`";
+      document.getElementById('fatherNameMessage').innerHTML ="** can't blank  please fill your Father Name like `Father Name`";
         // document.registration.name.focus();
         document.getElementById("F_Name").focus();
       success = false;
     }
-    if (FName.length < 3){}
-    else if(Name != "") {
-      document.getElementById('fatherNameMessage').innerHTML ='** Only allow minimum 3 character';
+    else if (FName.length < 3){
+      document.getElementById('fatherNameMessage').innerHTML ='** allow minimum 3 character';
       success = false;
     }
-    if (FName.length > 30){}
-    else if(Name != "") {
-      document.getElementById('fatherNameMessage').innerHTML ='** Only allow maximum 30 character';
+    else if (FName.length > 30) {
+      document.getElementById('fatherNameMessage').innerHTML ='** only allow maximum 30 character';
       success = false;
     }
     // defining RegExp function
-    if (FName.match(correct_way)) true
-    else if(Name != ""){
-      document.getElementById('fatherNameMessage').innerHTML ='**  Only alphabets are allowed like "Shubham kanaujiya" ';
+    if (FName.match(correct_way)) true;
+    else if(FName !="")
+    {
+      document.getElementById('fatherNameMessage').innerHTML ='**  Only alphabets are allowed like "Father Name" ';
       success = false;
     }
   
+
+
     // create a validation logic for Mobile number
     if (MNumber == '') {
       document.getElementById('mobileNumberMessage').innerHTML ='** Please  Enter a mobile Number';
