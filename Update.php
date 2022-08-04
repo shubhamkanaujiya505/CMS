@@ -18,7 +18,7 @@ $Update = $_GET['Updates'];
 $query = "SELECT * FROM StudentForm where SrNo = '$Update'"; 
 $data = mysqli_query($con, $query); 
 $res = mysqli_fetch_object($data);
-// print_r($res);
+
 $name = $res->Student_Name;
 $fathername = $res->Father_Name;
 $mobilenumber = $res->Mobile_Number;
@@ -27,9 +27,17 @@ $dob = $res->Date_Of_Birth;
 $Co_untry = $res->Country;
 $St_ate = $res->State;
 $Ci_ty = $res->city;
-$up_address = $res->Address;
+$address = $res->Address;
 $email = $res->Email;
 $File = $res->FileUpload;
+
+$countryQuery = "SELECT id,name FROM tbl_countries";
+$data1 = mysqli_query($con, $countryQuery); 
+
+$stateQuery = "SELECT country_id,name FROM tbl_states";
+$data2 = mysqli_query($con, $stateQuery); 
+
+
 // echo "<pre>";print_r($res);exit;
 // when clicked on submit button data is save
 // if(isset($_POST['submit'])){
@@ -60,7 +68,7 @@ $File = $res->FileUpload;
 //   $v = '"' . implode('", "', $value) . '"';
   
 //     // taking input in db table
-//     $q = "update StudentForm set SrNo = $Update,$v where SrNo=$v";
+    $q = "update StudentForm set SrNo = $Update,$v where SrNo=$v";
  
 // //$name,$fathername,$mobilenumber,$gender,$dob,$state,$Address,$email,$Password,$File
 //     $query = mysqli_query($con,$q);
@@ -86,6 +94,20 @@ $File = $res->FileUpload;
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>Resistration form</title>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/css/intlTelInput.css" rel="stylesheet" />
+  <!-- <script src="https://code.jquery.com/jquery-1.11.1.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/intlTelInput.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"></script>
 </head>
 
 <body style="background-color: skyblue;">
@@ -93,7 +115,7 @@ $File = $res->FileUpload;
   <div class="container">
     <!-- Calling function form js using validation function-->
         <div class="panel panel-default" id="form" >
-          <form method="post" name="registration" onsubmit="return validation()"> 
+          <form method="post" name="registration" onsubmit="return validation()" enctype="multipart/form-data"> 
             <div class="title">
               <h1>
                 Update Operation Form
@@ -107,7 +129,6 @@ $File = $res->FileUpload;
               <label for="name">Student Name
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="text" class="inputs" name="name" id="Name" value="<?php echo $name; ?>" placeholder="Enter your Name" />
               <!-- Using style tag in span tag to give style in error message -->
               <span id="nameMessage" style="color: red"></span>
@@ -118,18 +139,16 @@ $File = $res->FileUpload;
               <label for="fathername">Father Name
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="text" class="inputs" name="fathername" id="F_Name" value="<?php  echo $fathername ?>" placeholder="Enter your Father Name" />
               <span id="fatherNameMessage" style="color: red"></span>
             </div>
 
             <div>
               <!-- Mobile number -->
-              <label for="mobileNumber">Mobile Number
+              <label for="mobileNumber" style="display: block;">Mobile Number
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
-              <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value="<?php  echo $mobilenumber; ?>"
+              <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="13" value="<?php  echo $mobilenumber; ?>"
                 placeholder="Enter your Mobile Number" />
               <span id="mobileNumberMessage" style="color: red"></span>
             </div>
@@ -160,7 +179,6 @@ $File = $res->FileUpload;
               <label for="DOB">Date of Birth
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
               <input type="Date" class="inputs" name="dob" id="dob" value="<?php  echo $dob; ?>" />
               <span id="DOBMessage" style="color: red"></span>
             </div>
@@ -173,29 +191,35 @@ $File = $res->FileUpload;
                 <!--Course -->
 
                   
-                    <i class="fas fa-user"></i>
                    
                     <section class="courses-section">
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="country">Country</label>
-                                <select type="text" name="country" id="country" value="<?php  echo $Co_untry; ?>" class="form-control">
+                                <select type="text" name="country" id="country" class="form-control">
                                   <span id="selectcountryMessage" style="color: red"></span>
-                                    <option>Select Country</option>
+                                  <?php while($res1 = mysqli_fetch_object($data1)){?>
+                                    <option value="<?php  echo $Co_untry; ?>"<?php if($res1->country_id==$Co_untry){ echo 'selected';}?>><?php  echo $res1->name; ?></option>
+                                    <?php 
+                                  } ?>
                                 </select>
                             </div>
 
                             <div class="col-md-4">
-                                <label for="state">State</label>
-                                <select type="text" id="state" value="<?php  echo $St_ate; ?>" name="state" class="form-control"></select>
-                                <span id="selectstateMessage" style="color: red"></span>
+                                <label for="state">State</label>  <span id="selectstateMessage" style="color: red"></span>
+                                <select type="text" id="state"<?php  echo $St_ate; ?> name="state" class="form-control">
+                              
+                                <?php while($res2 = mysqli_fetch_object($data2)){?>
+                                    <option value="<?php  echo $St_ate; ?>"<?php if($res2->id==$St_ate){ echo 'selected';}?>><?php  echo $res2->name; ?></option>
+                                    <?php 
+                                  } ?></select>
                             </div>
 
 
 
                             <div class="col-md-4">
                                 <label for="city">City</label>
-                                <select name="city" id="city" value="<?php  echo $Ci_ty; ?>" class="form-control"></select>
+                                <select name="city" id="city"<?php  echo $Ci_ty; ?> class="form-control"></select>
                                 <span id="selectcityMessage" style="color: red"></span>
                             </div>
 
@@ -213,8 +237,7 @@ $File = $res->FileUpload;
               <label for="Address">Address
                 <hr />
               </label>
-              <i class="fas fa-user"></i>
-              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4" value="<?php  echo $up_address; ?>"></textarea>
+              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4"><?php  echo $address; ?></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
 
@@ -224,7 +247,6 @@ $File = $res->FileUpload;
               <label for="email">E-mail
                 <hr />
               </label>
-              <i class="far fa-envelope"></i>
 
               <input type="text" class="inputs" name="email" id="E_mail" value="<?php  echo $email; ?>" placeholder="abc@gmail.com" />
               <span id="EmailMessage" style="color: red"></span>
@@ -234,9 +256,8 @@ $File = $res->FileUpload;
               <label for="file">File Upload
                 <hr />
               </label>
-              <i class="fas fa-lock"></i>
 
-              <input type="file" class="inputs" name="file" id="file" value="" <?php echo $File; ?> />
+              <input type="file" class="inputs" name="file" id="file" <?php echo $File; ?> />
               <span id="fileMessage" style="color: red"></span>
             </div>
             <!-- Submit button -->
@@ -250,6 +271,6 @@ $File = $res->FileUpload;
 
 </div>
       <!-- JavaScript page link -->
-  <!-- <script src="Registration_form_script.js"></script> -->
+    <script src="Registration_form_script.js"></script>
 </body>
 </html>

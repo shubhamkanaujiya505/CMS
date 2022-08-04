@@ -1,4 +1,10 @@
 <?php
+// query("tab1",'col2',"where col1= 1");
+// function query($table,$col = "*",$where = "",$order = ""){
+//   echo "SELECT $col FROM $table $where";
+// }
+
+// EXIT;
 ob_start(); //add when header('location:Display.php'); gives error message
 // create session 
 
@@ -45,7 +51,7 @@ ob_start(); //add when header('location:Display.php'); gives error message
         <span id="PASSWORDfailMessage" style="color: #ff8500;"></span>
 
         <!-- add forget option  -->
-        <div class="forgetpass" id="forgetpass"><a href="#" class="link" onclick="message()">ForgetPassword ?</a></div>
+        <div class="forgetpass" id="forgetpass"><a href="recover_email.php" class="" >ForgetPassword ?</a></div>
        
         <!-- add submit button  -->
         <input type="submit" class="submit" name="login" value="Submit">
