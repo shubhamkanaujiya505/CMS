@@ -118,6 +118,7 @@ session_start();
     $con = mysqli_connect('localhost','root','123456'); //connect to database
 
     mysqli_select_db($con,'Form');
+
 // when clicked on submit button data is save
 
 

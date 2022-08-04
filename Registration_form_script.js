@@ -64,7 +64,7 @@ function validation() {
     /////////////////////// create  validation logic for name /////////////////////////
 
     if (Name==""|| Name == null) {
-      document.getElementById('nameMessage').innerHTML ="** can't blank please fill your Name like `Student Name`";
+      document.getElementById('nameMessage').innerHTML ="** can't blank please fill your Name like `Amit Kumar`";
         document.getElementById("Name").focus();
       success = false;
     }else if (Name.length < 3){
@@ -75,19 +75,20 @@ function validation() {
       document.getElementById('nameMessage').innerHTML ='** only allow maximum 30 character';
       success = false;
     }
-    
     // defining RegExp functionx
-    else if (Name.match(correct_way)) true;
-      else (Name !="")
+    if (Name.match(correct_way)) true;
+    else if(Name!="")
    {
-      document.getElementById('nameMessage').innerHTML ='** Only alphabets are allowed like "Student Name"';
+      document.getElementById('nameMessage').innerHTML ='** Only alphabets are allowed like "Amit Kumar"';
       success = false;
+    }else {
+
     }
 
 /////////////////////// create a validation logic for Father Name /////////////////////////////
 
     if (FName == '') {
-      document.getElementById('fatherNameMessage').innerHTML ="** can't blank  please fill your Father Name like `Father Name`";
+      document.getElementById('fatherNameMessage').innerHTML ="** can't blank  please fill your Father Name like `Amit Kumar`";
         // document.registration.name.focus();
         document.getElementById("F_Name").focus();
       success = false;
@@ -104,8 +105,10 @@ function validation() {
     if (FName.match(correct_way)) true;
     else if(FName !="")
     {
-      document.getElementById('fatherNameMessage').innerHTML ='**  Only alphabets are allowed like "Father Name" ';
+      document.getElementById('fatherNameMessage').innerHTML ='**  Only alphabets are allowed like "Amit Kumar" ';
       success = false;
+    }else{
+
     }
   
 
@@ -269,7 +272,7 @@ function validation() {
     
     return success; 
   }
-      // settings
+    //   // settings
     iziToast.settings({
       timeout: 1000, // default timeout
       resetOnHover: true,
@@ -287,10 +290,40 @@ function validation() {
 
     // success
     $('#successClick').click(function () {
-      iziToast.warning({timeout: 1000, icon: 'fa fa-chrome', title: 'OK', message: 'Not Register'});
+      iziToast.success({timeout: 3000, icon: 'fa fa-check', title: 'OK', message: 'Registered successfully'});
     }); 
+    // error
+    $('#errorClick').click(function () {
+      iziToast.error({title: 'Error',  icon: 'fa fa-times', message: 'Not Registered'});
+    });
 
-  // validation for login Username and password 
+
+
+    // $("#formid").submit(function(e) {
+    //   e.preventDefault();
+    //   var name = $("#Name").val();
+    //   var comment = $("#F_Name").val();
+      
+    //   if(name == "" || comment == "" ) {
+    //     $("#error_message").show().html("All Fields are Required");
+    //   } else {
+    //     $("#error_message").html("").hide();
+    //     $.ajax({
+    //       type: "POST",
+    //       url: "post-form.php",
+    //       data: "name="+name+"&comment="+comment,
+    //       success: function(data){
+    //         $('#success_message').fadeIn().html(data);
+    //         setTimeout(function() {
+    //           $('#success_message').fadeOut("slow");
+    //         }, 2000 );
+    
+    //       }
+    //     });
+    //   }
+    // })
+
+  // validation for login Username and password on login page
 
   function validlogin(){
   var USERNAME = document.getElementById('userName').value;
@@ -309,27 +342,21 @@ function validation() {
     document.getElementById('PASSWORDfailMessage').innerHTML = '** please must fill your Password';
     success = false;
   }
-  
-  
-  // if(success !== true){
-  //   alert("The form was submitted");
-  // }
+
   return success;
 }
 
 // function for country state and city 
 
 $(document).ready(function() {
-
       $('#country').change(function() {
           loadState($(this).find(':selected').val())
       })
       $('#state').change(function() {
           loadCity($(this).find(':selected').val())
       })
-      
-
 });
+
 // define function for country 
 function loadCountry($id = ''){
   $cid = $id;

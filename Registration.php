@@ -219,7 +219,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
   <div class="container">
     <!-- Calling function form js using validation function-->
     <div class="panel panel-default" id="form" >
-      <form method="post" name="registration" onsubmit="return validation()"> 
+      <form id="formid"method="post" name="registration" onsubmit="return validation()"> 
         <!-- <?php
         // if(){
         //   echo "sucess";
@@ -244,7 +244,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <label for="name">Student Name
                 <hr />
               </label>
-              <input type="text" class="inputs" name="name" id="Name" value="<?php echo $name; ?>" placeholder="Enter your Name"   />
+              <input type="text" class="inputs" name="name" id="Name" value="<?php echo $name; ?>" class="form-control" placeholder="Enter your Name"   />
               <!-- Using style tag in span tag to give style in error message -->
               <span id="nameMessage" style="color: red"></span>
             </div>
@@ -254,7 +254,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <label for="fathername">Father Name
                 <hr />
               </label>
-              <input type="text" class="inputs" name="fathername" id="F_Name" value="" placeholder="Enter your Father Name"  />
+              <input type="text" class="inputs" name="fathername" id="F_Name" value="" class="form-control" placeholder="Enter your Father Name"  />
               <span id="fatherNameMessage" style="color: red"></span>
             </div>
             
@@ -265,11 +265,11 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
                 <!-- Gender -->
                 <label for="gender">Gender<hr /></label>
                 <br>
-                <input type="radio" class="Gender" name="gender" id="Male" value="1" style=" font-size: 5px;" checked />
+                <input type="radio" class="Gender" name="gender" id="Male" value="1" class="form-control" style=" font-size: 5px;" checked />
               <label id="male" for="Male">Male </label>
               <span id="maleMessage" style="color: red"></span><br>
               
-              <input type="radio" class="Gender" name="gender" onclick="" id="Female" value="0" />
+              <input type="radio" class="Gender" name="gender" onclick="" class="form-control" id="Female" value="0" />
               <label id="female" for="Female">Female </label>
               <span id="femaleMessage" style="color: red"></span>
             </div>
@@ -320,7 +320,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <label for="DOB">Date of Birth
                 <hr />
               </label>
-              <input type="Date" class="inputs" name="dob" id="dob" value="" />
+              <input type="Date" class="inputs" name="dob" id="dob" value="" class="form-control" />
 
               <span id="DOBMessage" style="color: red"></span>
             </div>
@@ -332,7 +332,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               </label>
             <div>
               <!-- <input type="text" id="mobile_code" class="form-control" placeholder="Phone Number" name="name"> -->
-              <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value=""
+              <input type="tel" class="inputs" name="mobilenumber" id="M_Number" maxlength="10" value="" class="form-control"
                   />
                   <!-- placeholder="Phone Number" -->
                 <span id="mobileNumberMessage" style="color: red"></span>
@@ -390,7 +390,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <label for="Address">Address
                 <hr />
               </label>
-              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" placeholder="Enter your Address" rows="4"></textarea>
+              <textarea name="Address" id="Address" class="inputs" style="overflow:hidden" class="form-control" placeholder="Enter your Address" rows="4"></textarea>
               <span id="addressMessage" style="color: red"></span>
             </div>
             
@@ -400,7 +400,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
                 <hr />
               </label>
 
-              <input type="text" class="inputs" name="email" id="E_mail" value="" placeholder="abc@gmail.com" />
+              <input type="text" class="inputs" name="email" id="E_mail" value="" class="form-control" placeholder="abc@gmail.com" />
               <span id="EmailMessage" style="color: red"></span>
             </div>
             <div>
@@ -408,7 +408,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <label for="password">Password
                 <hr />
               </label>
-              <input type="password" class="inputs" name="password" id="Password" value=""
+              <input type="password" class="inputs" name="password" id="Password" class="form-control" value=""
                 placeholder="Enter your Password here" />
               <span id="PasswordMessage" style="color: red"></span>
             </div>
@@ -418,8 +418,8 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <label for="Re-password">Re-password
                 <hr />
               </label>
-              fas fa-lock
-              <input type="password" class="inputs" name="re-password" id="Re-password" value=""
+              
+              <input type="password" class="inputs" name="re-password" id="Re-password" class="form-control" value=""
                 placeholder="Enter your Re-Password here" />
               <span id="re_PasswordMessage" style="color: red"></span>
             </div>
@@ -430,7 +430,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
                 <hr />
               </label>
 
-              <input type="file" class="inputs" name="file" id="file" value="" />
+              <input type="file" class="inputs" name="file" id="file" value=""  class="form-control" />
               <span id="fileMessage" style="color: red"></span>
             </div>
             <!-- Checkbox -->
@@ -440,10 +440,10 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * from StudentForm where Email='{$v
               <!-- Declaration -->
               <b style=" color:white; margin-left: 10px; margin-bottom: 10px;">I have declare this information is given by me and this is correct</b>
          
-            <input type="hidden" name="token" value="<?php echo $Token;?>">
+            <input type="hidden" name="token" class="form-control" value="<?php echo $Token;?> ">
             <!-- Submit button -->
             <div>
-            <button type="submit" name="submit"  value="submit"  id="successClick" style="margin-top:50px; width: 50%; border-radius:35px; font-size:large;"><b>Submit</b></a></button>
+            <button type="submit" name="submit"  value="submit"  id="successClick" onclick="myalert('you have successfully')" style="margin-top:50px; width: 50%; border-radius:35px; font-size:large;"><b>Submit</b></a></button>
             <!-- Reset button -->
             <button type="reset" value="Reset" style="width: 49%; border-radius:35px; font-size:large;"><b>Reset</b></button>
             </div>
